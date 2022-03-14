@@ -15,15 +15,21 @@
 		android:supportsRtl="true"
 		android:theme="@style/Theme.SmartKnee.Starting">
 		<activity
-			android:name=".ui.auth.AuthenticatorActivity"
-			android:theme="@style/Theme.SmartKnee"
+			android:name=".ui.chart.ChartActivity"
 			android:exported="false" />
+		<activity
+			android:name=".ui.chart.MainActivity"
+			android:exported="false" />
+		<activity
+			android:name=".ui.auth.AuthenticatorActivity"
+			android:exported="false"
+			android:theme="@style/Theme.SmartKnee" />
 		<activity
 			android:name=".ui.dashboard.DashboardActivity"
-			android:theme="@style/Theme.SmartKnee"
-			android:exported="false" />
+			android:exported="false"
+			android:theme="@style/Theme.SmartKnee" />
 		<activity
-			android:name=".ui.LauncherActivity"
+			android:name=".ui.launcher.LauncherActivity"
 			android:exported="true"
 			android:label="@string/app_name"
 			android:theme="@style/Theme.SmartKnee">

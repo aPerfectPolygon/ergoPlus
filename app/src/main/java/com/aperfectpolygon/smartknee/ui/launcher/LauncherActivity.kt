@@ -1,4 +1,4 @@
-package com.aperfectpolygon.smartknee.ui
+package com.aperfectpolygon.smartknee.ui.launcher
 
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen

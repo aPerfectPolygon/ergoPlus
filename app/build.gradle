@@ -5,7 +5,8 @@ plugins {
 }
 
 android {
-	compileSdk 31
+	compileSdk 30
+	buildToolsVersion '30.0.3'
 
 	defaultConfig {
 		applicationId "com.aperfectpolygon.smartknee"
@@ -51,6 +52,10 @@ android {
 		resources {
 			excludes += ['/META-INF/{AL2.0,LGPL2.1}', 'META-INF/DEPENDENCIES', 'META-INF/LICENSE', 'META-INF/LICENSE.txt', 'META-INF/license.txt', 'META-INF/NOTICE', 'META-INF/NOTICE.txt', 'META-INF/notice.txt', 'META-INF/ASL2.0', 'META-INF/*.kotlin_module']
 		}
+	}
+	dependenciesInfo {
+		includeInApk false
+		includeInBundle false
 	}
 }
 
@@ -115,6 +120,7 @@ dependencies {
 	debugImplementation("io.objectbox:objectbox-android-objectbrowser:3.1.2")
 	releaseImplementation("io.objectbox:objectbox-android:3.1.2")
 
+	implementation('com.github.lecho:hellocharts-android:1.5.8')
 
 }
 apply plugin: "io.objectbox"

@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Windows 10/Documents/GitHub/smartKnee/app/src/main/res/drawable/dr_dashboardbg.xml" value="0.2315" />
+        <entry key="..\:/Users/Windows 10/Documents/GitHub/smartKnee/app/src/main/res/drawable/dr_header.xml" value="0.2315" />
+        <entry key="..\:/Users/Windows 10/Documents/GitHub/smartKnee/app/src/main/res/layout/activity_autherticator.xml" value="0.284737067122702" />
+        <entry key="..\:/Users/Windows 10/Documents/GitHub/smartKnee/app/src/main/res/layout/activity_chart.xml" value="0.2731936725096195" />
+        <entry key="..\:/Users/Windows 10/Documents/GitHub/smartKnee/app/src/main/res/layout/activity_dashboard.xml" value="0.284737067122702" />
+        <entry key="..\:/Users/Windows 10/Documents/GitHub/smartKnee/app/src/main/res/layout/activity_launcher.xml" value="0.284737067122702" />
+        <entry key="..\:/Users/Windows 10/Documents/GitHub/smartKnee/app/src/main/res/layout/activity_main.xml" value="0.284737067122702" />
+        <entry key="..\:/Users/Windows 10/Documents/GitHub/smartKnee/app/src/main/res/layout/fragment_signup.xml" value="0.346875" />
         <entry key="app/src/main/res/drawable/dr_btn.xml" value="0.2405" />
         <entry key="app/src/main/res/drawable/shape_circle.xml" value="0.1775" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.36302083333333335" />
