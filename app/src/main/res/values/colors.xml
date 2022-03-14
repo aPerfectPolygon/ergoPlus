@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="primary">#3C56BB</color>
+	<color name="onPrimary">#FFFFFF</color>
+	<color name="primaryContainer">#DCE1FF</color>
+	<color name="onPrimaryContainer">#001257</color>
+	<color name="secondary">#9B4428</color>
+	<color name="onSecondary">#FFFFFF</color>
+	<color name="secondaryContainer">#FFDBCF</color>
+	<color name="onSecondaryContainer">#3B0900</color>
+	<color name="tertiary">#7D5260</color>
+	<color name="onTertiary">#FFFFFF</color>
+	<color name="tertiaryContainer">#FFD8E4</color>
+	<color name="onTertiaryContainer">#31111D</color>
+	<color name="error">#B3261E</color>
+	<color name="errorContainer">#F9DEDC</color>
+	<color name="onError">#FFFFFF</color>
+	<color name="onErrorContainer">#410E0B</color>
+	<color name="background">#FBFDFC</color>
+	<color name="onBackground">#191C1C</color>
+	<color name="surface">#FBFDFC</color>
+	<color name="onSurface">#191C1C</color>
+	<color name="surfaceVariant">#E7E0EC</color>
+	<color name="onSurfaceVariant">#49454F</color>
+	<color name="outline">#79747E</color>
+	<color name="inverseOnSurface">#EFF1F0</color>
+	<color name="inverseSurface">#2D3131</color>
+	<color name="inversePrimary">#B7C4FF</color>
+	<color name="shadow">#000000</color>
+	<color name="primaryInverse">#B7C4FF</color>
+
+	<color name="titleTextColor">#434547</color>
+	<color name="subTitleTextColor">#646464</color>
+	<color name="disableTextColor">#b9b9b9</color>
+	<color name="windowBackground">#f2f3f5</color>
+	<color name="itemBackground">#ffffff</color>
+
+	<color name="mid_gray">#646464</color>
+	<color name="dark_gray">#434547</color>
+
+	<color name="white_transparent">#E6FFFFFF</color>
+	<color name="transparent">#00000000</color>
+
+	<color name="red">#FD1D1D</color>
+	<color name="green">#10a168</color>
+	<color name="blue">#1478DC</color>
+	<color name="yellow">#FCB045</color>
+</resources>
