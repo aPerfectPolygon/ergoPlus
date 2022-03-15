@@ -2,6 +2,7 @@ package com.aperfectpolygon.smartknee.helper.abstracts
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
@@ -48,8 +49,6 @@ interface AbstractFrgInterface {
 			Logger.e(e, e.message ?: "")
 		}
 	}
-
-	var rootLayout: View
 
 	fun onDispose() = Unit
 	fun onErrorHandler() = Unit

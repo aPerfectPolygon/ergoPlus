@@ -32,4 +32,44 @@
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/txt_title" />
 
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_gym"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_margin="@dimen/_24sdp"
+		android:src="@drawable/vtr_gym"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintEnd_toStartOf="@id/img_avatar"
+		app:layout_constraintTop_toTopOf="@id/img_avatar" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_chart"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_margin="@dimen/_24sdp"
+		android:src="@drawable/vtr_chart"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintEnd_toEndOf="@id/img_avatar"
+		app:layout_constraintStart_toStartOf="@id/img_avatar" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_gifts"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_margin="@dimen/_24sdp"
+		android:src="@drawable/vtr_gift"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintStart_toEndOf="@id/img_avatar"
+		app:layout_constraintTop_toTopOf="@id/img_avatar" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_avatar"
+		android:layout_width="@dimen/_48sdp"
+		android:layout_height="@dimen/_48sdp"
+		android:layout_marginBottom="@dimen/_24sdp"
+		android:src="@drawable/dr_btn"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

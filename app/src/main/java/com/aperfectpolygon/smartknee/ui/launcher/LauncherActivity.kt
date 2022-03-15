@@ -2,6 +2,7 @@ package com.aperfectpolygon.smartknee.ui.launcher
 
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.aperfectpolygon.smartknee.databinding.ActivityLauncherBinding
 import com.aperfectpolygon.smartknee.helper.abstracts.AbstractActivity
 import com.orhanobut.logger.Logger
@@ -18,12 +19,9 @@ class LauncherActivity : AbstractActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		installSplashScreen()
 		super.onCreate(savedInstanceState)
-		binding = ActivityLauncherBinding.inflate(layoutInflater)
-		setContentView(binding.root)
-		/*when (UserRepository.user.status) {
-			"ACTIVE" -> moveTo(from = this, to = DashboardActivity())
-			else -> moveTo(from = this, to = AuthenticatorActivity())
-		}*/
+		binding = ActivityLauncherBinding.inflate(layoutInflater).apply {
+			setContentView(root)
+		}
 	}
 
 	private fun socket() {
@@ -60,4 +58,6 @@ class LauncherActivity : AbstractActivity() {
 			socket()
 		}
 	}
+
+	override lateinit var circularProgressDrawable: CircularProgressDrawable
 }

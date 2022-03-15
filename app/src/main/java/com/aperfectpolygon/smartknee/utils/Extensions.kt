@@ -1,6 +1,9 @@
 package com.aperfectpolygon.smartknee.utils
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.wifi.WifiManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
@@ -9,11 +12,15 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import com.aperfectpolygon.smartknee.R
 import com.google.android.material.R.id.snackbar_action
 import com.google.android.material.R.id.snackbar_text
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import java.net.InetAddress
+import java.net.UnknownHostException
+import java.nio.ByteOrder
 
 fun Context.snackBar(
 	rootLayout: View,
@@ -166,3 +173,28 @@ val String.persianToEnglishNumber: String
 			}
 		}
 	}.trim()
+
+val Context.isWifiConnected: Boolean
+	get() = with(getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager) {
+		when {
+			(getNetworkCapabilities(activeNetwork ?: return false) ?: return false)
+				.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+			else -> false
+		}
+	}
+
+val Context.localWifiIpAddress: String?
+	get() {
+		val wifiManager = getSystemService(AppCompatActivity.WIFI_SERVICE) as WifiManager
+		var ipAddress = wifiManager.connectionInfo.ipAddress
+		if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN)) {
+			ipAddress = Integer.reverseBytes(ipAddress)
+		}
+		val ipByteArray: ByteArray = ipAddress.toBigInteger().toByteArray()
+		val ipAddressString: String? = try {
+			InetAddress.getByAddress(ipByteArray).hostAddress
+		} catch (ex: UnknownHostException) {
+			null
+		}
+		return ipAddressString?.trim()
+	}

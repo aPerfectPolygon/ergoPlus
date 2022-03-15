@@ -11,18 +11,6 @@ object UserRepository : OnUserRepository {
 	override val isUserEmpty: Boolean
 		get() = mBox.isEmpty
 
-	override val username: String
-		get() = user.username ?: ""
-
-	override var avatar: String
-		get() = user.avatar ?: ""
-		set(value) {
-			user.apply {
-				avatar = value
-				user = this
-			}
-		}
-
 	override var user: User
 		get() = mBox.query().build().findFirst() ?: User()
 		set(value) = with(mBox) {

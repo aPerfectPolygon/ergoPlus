@@ -26,7 +26,7 @@ abstract class AbstractAdapter<VH : RecyclerView.ViewHolder?, T> : RecyclerView.
 		inflater = LayoutInflater.from(context)
 		ctxAdapter = context
 		this.items = items
-		circularProgressDrawable = CircularProgressDrawable(ctxAdapter).apply {
+		circularProgressDrawable = Circul`arProgressDrawable(ctxAdapter).apply {
 			strokeWidth = 5f
 			centerRadius = 30f
 			start()
@@ -79,13 +79,13 @@ abstract class AbstractAdapter<VH : RecyclerView.ViewHolder?, T> : RecyclerView.
 	 * a function for setting the Image Resource using Glide
 	 * @param resId is the image resourceId
 	 */
-	open fun ImageView.setImageResourceWithGlide(resId: Int) = try {
+	fun ImageView.setImageResourceWithGlide(resId: Int) = try {
 		Glide.with(this).load(resId).placeholder(circularProgressDrawable).into(this)
 	} catch (e: Exception) {
 		Logger.e(e, e.message ?: "")
 	}
 
-	open fun AppCompatImageView.setImageResourceWithGlide(resId: Int) = try {
+	fun AppCompatImageView.setImageResourceWithGlide(resId: Int) = try {
 		Glide.with(this).load(resId).placeholder(circularProgressDrawable).into(this)
 	} catch (e: Exception) {
 		Logger.e(e, e.message ?: "")

@@ -2,7 +2,6 @@
 
 package com.aperfectpolygon.smartknee.helper.abstracts
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -16,10 +15,7 @@ import com.aperfectpolygon.smartknee.helper.router.OnNavigate
 import com.aperfectpolygon.smartknee.helper.sharedPrefrences.ShpHelper.darkMode
 import com.orhanobut.logger.Logger
 
-abstract class AbstractActivity : AppCompatActivity() {
-
-	@Suppress("PropertyName")
-	val TAG: String = this.javaClass.simpleName + "_TAG"
+abstract class AbstractActivity : AppCompatActivity(), AbstractFrgInterface {
 
 	fun navigate(targetId: Int) = (this as? OnNavigate)?.apply { navigateTo(targetId) }
 
