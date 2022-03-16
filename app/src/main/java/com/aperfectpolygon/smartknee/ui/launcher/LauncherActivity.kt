@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.aperfectpolygon.smartknee.databinding.ActivityLauncherBinding
+import com.aperfectpolygon.smartknee.helper.BaseSocket.convertSocketLine
 import com.aperfectpolygon.smartknee.helper.abstracts.AbstractActivity
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.*
@@ -39,9 +40,9 @@ class LauncherActivity : AbstractActivity() {
 				CoroutineScope(Dispatchers.IO).launch {
 					Scanner(inputStream).apply {
 						while (hasNextLine()) nextLine().apply {
-							if (!isNullOrEmpty()) also { line ->
+							if (!isNullOrEmpty()) convertSocketLine.also { line ->
 								runCatching {
-									runOnUiThread { binding.txtSocketStatus.text = line }
+									runOnUiThread { binding.txtSocketStatus.text = line.type }
 									Logger.i("line: $line")
 								}.onFailure { Logger.e(it, it.message ?: "") }
 							}
@@ -54,9 +55,7 @@ class LauncherActivity : AbstractActivity() {
 
 	override fun onResume() {
 		super.onResume()
-		MainScope().launch {
-			socket()
-		}
+		MainScope().launch { socket() }
 	}
 
 	override lateinit var circularProgressDrawable: CircularProgressDrawable

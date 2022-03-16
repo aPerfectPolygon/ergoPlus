@@ -1,9 +1,11 @@
 package com.aperfectpolygon.smartknee.utils
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
@@ -179,7 +181,10 @@ val Context.isWifiConnected: Boolean
 		when {
 			(getNetworkCapabilities(activeNetwork ?: return false) ?: return false)
 				.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-			else -> false
+			else -> {
+				startActivity(Intent(Settings.ACTION_WIFI_SETTINGS));
+				false
+			}
 		}
 	}
 

@@ -47,6 +47,7 @@
 			android:weightSum="2">
 
 			<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/img_chart"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_margin="@dimen/_24sdp"
@@ -54,6 +55,7 @@
 				app:srcCompat="@drawable/vtr_chart" />
 
 			<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/img_vibrate"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_margin="@dimen/_24sdp"
@@ -69,6 +71,7 @@
 			android:weightSum="2">
 
 			<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/img_gym"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_margin="@dimen/_24sdp"
@@ -76,6 +79,7 @@
 				app:srcCompat="@drawable/vtr_gym" />
 
 			<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/img_gifts"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_margin="@dimen/_24sdp"

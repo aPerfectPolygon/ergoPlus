@@ -160,7 +160,6 @@
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="@dimen/_24sdp"
 			android:layout_marginTop="@dimen/_8sdp"
-			android:visibility="gone"
 			app:layout_constraintTop_toBottomOf="@id/til_mail">
 
 			<com.google.android.material.textfield.TextInputEditText
@@ -203,7 +202,7 @@
 			app:layout_constraintTop_toBottomOf="@id/til_password" />
 
 		<com.google.android.material.button.MaterialButton
-			android:id="@+id/signup"
+			android:id="@+id/btn_signup"
 			style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"

@@ -7,8 +7,8 @@ import io.objectbox.annotation.Id
 @Entity
 data class User(
 	@Id var id: Long = 0,
-	@Expose val username: String = "",
-	@Expose val birthDate: Long = 0,
-	@Expose val email: String = "",
+	@Expose var username: String = "",
+	@Expose var birthDate: String = "",
+	@Expose var email: String = "",
 	@Expose var avatar: String = ""
 )

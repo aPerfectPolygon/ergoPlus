@@ -1,5 +1,6 @@
 package com.aperfectpolygon.smartknee.helper
 
+import com.aperfectpolygon.smartknee.model.event.Event
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializer
@@ -217,9 +218,9 @@ object BaseSocket : Socket() {
 		}.create()
 	}
 
-	val String.convertSocketLine: SocketOutput
+	val String.convertSocketLine: Event
 		@Throws(JsonSyntaxException::class)
-		get() = gsonBuilder.fromJson(this.trim(), object : TypeToken<SocketOutput>() {}.type)
+		get() = gsonBuilder.fromJson(this.trim(), object : TypeToken<Event>() {}.type)
 
 	private var x = 1000L
 	private fun _receive() {
