@@ -4,12 +4,15 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.Context.ACTIVITY_SERVICE
 import android.content.SharedPreferences
+import com.aperfectpolygon.smartknee.helper.BaseSocket
 import com.aperfectpolygon.smartknee.helper.constants.Constants.SHP_DARK_MOOD
 import com.aperfectpolygon.smartknee.helper.constants.Constants.SHP_INTRO_PLAYED
 import com.aperfectpolygon.smartknee.helper.constants.Constants.SHP_KEY
 import com.aperfectpolygon.smartknee.helper.constants.Constants.SHP_SERVER_ID
 
 object ShpHelper {
+
+	val socket: BaseSocket by lazy { BaseSocket }
 
 	private val Context.shp: SharedPreferences
 		get() = getSharedPreferences(SHP_KEY, Context.MODE_PRIVATE)

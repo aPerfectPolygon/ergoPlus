@@ -2,4 +2,9 @@
 	<!-- Default screen margins, per the Android Design guidelines. -->
 	<dimen name="activity_horizontal_margin">16dp</dimen>
 	<dimen name="activity_vertical_margin">16dp</dimen>
+	<dimen name="editText_elevation">@dimen/_4sdp</dimen>
+	<dimen name="editText_minHeight">@dimen/_24sdp</dimen>
+	<dimen name="menu_radius">@dimen/_24sdp</dimen>
+	<dimen name="card_radius">@dimen/_6sdp</dimen>
+	<dimen name="menu_icon_padding">@dimen/_4sdp</dimen>
 </resources>

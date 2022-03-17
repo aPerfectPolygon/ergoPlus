@@ -15,26 +15,22 @@
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
-		android:theme="@style/Theme.SmartKnee.Starting">
+		android:theme="@style/AppTheme">
 		<activity
 			android:name=".ui.chart.ChartActivity"
 			android:exported="false" />
 		<activity
-			android:name=".ui.chart.MainActivity"
-			android:exported="false" />
-		<activity
 			android:name=".ui.auth.AuthenticatorActivity"
 			android:exported="false"
-			android:theme="@style/Theme.SmartKnee" />
+			android:theme="@style/AppTheme" />
 		<activity
 			android:name=".ui.dashboard.DashboardActivity"
 			android:exported="false"
-			android:theme="@style/Theme.SmartKnee" />
+			android:theme="@style/AppTheme" />
 		<activity
 			android:name=".ui.launcher.LauncherActivity"
 			android:exported="true"
-			android:label="@string/app_name"
-			android:theme="@style/Theme.SmartKnee">
+			android:theme="@style/AppTheme">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 

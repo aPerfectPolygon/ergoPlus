@@ -1,8 +1,7 @@
 package com.aperfectpolygon.smartknee.helper
 
 import android.content.Context
-import com.aperfectpolygon.smartknee.R
-import com.aperfectpolygon.smartknee.model.user.MyObjectBox
+import com.aperfectpolygon.smartknee.model.MyObjectBox
 import io.objectbox.BoxStore
 
 // import io.objectbox.android.AndroidObjectBrowser
@@ -13,7 +12,8 @@ object ObjectBox {
 
 	fun Context.init() {
 		boxStore =
-			MyObjectBox.builder().androidContext(applicationContext).name("getString(R.string.db_name)")
+			MyObjectBox.builder().androidContext(applicationContext)
+				.name("aPerfectPolygon_SmartKneeStrap_17_Mar_2022")
 				.build()
 
 		// if (!BuildConfig.BUILD_TYPE.contains("debug")) return

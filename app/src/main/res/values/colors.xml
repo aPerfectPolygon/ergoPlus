@@ -1,48 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="primary">#3C56BB</color>
-	<color name="onPrimary">#FFFFFF</color>
-	<color name="primaryContainer">#DCE1FF</color>
-	<color name="onPrimaryContainer">#001257</color>
-	<color name="secondary">#9B4428</color>
-	<color name="onSecondary">#FFFFFF</color>
-	<color name="secondaryContainer">#FFDBCF</color>
-	<color name="onSecondaryContainer">#3B0900</color>
-	<color name="tertiary">#7D5260</color>
-	<color name="onTertiary">#FFFFFF</color>
-	<color name="tertiaryContainer">#FFD8E4</color>
-	<color name="onTertiaryContainer">#31111D</color>
-	<color name="error">#B3261E</color>
-	<color name="errorContainer">#F9DEDC</color>
-	<color name="onError">#FFFFFF</color>
-	<color name="onErrorContainer">#410E0B</color>
-	<color name="background">#FBFDFC</color>
-	<color name="onBackground">#191C1C</color>
-	<color name="surface">#FBFDFC</color>
-	<color name="onSurface">#191C1C</color>
-	<color name="surfaceVariant">#E7E0EC</color>
-	<color name="onSurfaceVariant">#49454F</color>
-	<color name="outline">#79747E</color>
-	<color name="inverseOnSurface">#EFF1F0</color>
-	<color name="inverseSurface">#2D3131</color>
-	<color name="inversePrimary">#B7C4FF</color>
-	<color name="shadow">#000000</color>
-	<color name="primaryInverse">#B7C4FF</color>
+	<color name="colorPrimaryDark">#034c52</color>
+	<color name="colorPrimary">#015c63</color>
+	<color name="colorAccent">#017075</color>
+	<color name="colorSecondaryDark">#F48D79</color>
+	<color name="colorSecondary">#fda898</color>
+	<color name="colorSecondaryAccent">#ffc0b4</color>
 
+	<color name="whiteBg">#00FFFFFF</color>
+	<color name="disableForeground">#66FFFFFF</color>
 	<color name="titleTextColor">#434547</color>
 	<color name="subTitleTextColor">#646464</color>
 	<color name="disableTextColor">#b9b9b9</color>
 	<color name="windowBackground">#f2f3f5</color>
 	<color name="itemBackground">#ffffff</color>
+	<color name="bottomAppbarBackground">#ffffff</color>
+
+	<color name="textInputStrokeColor">#434547</color>
+	<color name="textInputStrokeColorDisabled">#838383</color>
+
+	<color name="white">#FFFFFF</color>
 
 	<color name="mid_gray">#646464</color>
 	<color name="dark_gray">#434547</color>
+
+	<color name="profileColor">#ffffff</color>
+	<color name="logoColor">#4D4D4D</color>
 
 	<color name="white_transparent">#E6FFFFFF</color>
 	<color name="transparent">#00000000</color>
 
 	<color name="red">#FD1D1D</color>
+	<color name="red15">#26FD1D1D</color>
+	<color name="red30">#4DFD1D1D</color>
+	<color name="red50">#80FD1D1D</color>
+
 	<color name="green">#10a168</color>
+	<color name="green15">#2610A168</color>
+	<color name="green30">#4D10A168</color>
+	<color name="green50">#8010A168</color>
+
 	<color name="blue">#1478DC</color>
+
 	<color name="yellow">#FCB045</color>
+
+	<color name="large_co_Share">#FCB045</color>
+	<color name="small_co_share">#f88002</color>
+	<color name="stocking_box">#fc3d01</color>
+	<color name="cash">#ff0000</color>
+
+	<color name="lowest_risk">#2962ff</color>
+	<color name="low_risk">#9fbdff</color>
+	<color name="high_risk">#f9a0a0</color>
+	<color name="extreme_risk">#ff0000</color>
+
+	<color name="portfolio_1">#FCB045</color>
+	<color name="portfolio_2">#FC6E33</color>
+	<color name="portfolio_3">#FD1D1D</color>
+	<color name="portfolio_4">#D9264A</color>
+	<color name="portfolio_5">#AF307E</color>
+	<color name="portfolio_6">#833AB4</color>
+	<color name="portfolio_7">#403AB4</color>
+	<color name="portfolio_8">#3E5BA8</color>
+	<color name="portfolio_9">#36A67B</color>
+	<color name="portfolio_10">#4DCF9E</color>
+
+	<color name="menuStartColor">@color/colorPrimary</color>
+	<color name="menuEndColor">@color/colorAccent</color>
+
 </resources>

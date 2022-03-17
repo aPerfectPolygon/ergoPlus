@@ -26,7 +26,7 @@ abstract class AbstractAdapter<VH : RecyclerView.ViewHolder?, T> : RecyclerView.
 		inflater = LayoutInflater.from(context)
 		ctxAdapter = context
 		this.items = items
-		circularProgressDrawable = Circul`arProgressDrawable(ctxAdapter).apply {
+		circularProgressDrawable = CircularProgressDrawable(ctxAdapter).apply {
 			strokeWidth = 5f
 			centerRadius = 30f
 			start()

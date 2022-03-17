@@ -5,21 +5,21 @@
 	<item android:state_enabled="false">
 		<shape android:shape="rectangle">
 			<corners android:radius="@dimen/_24sdp" />
-			<solid android:color="@color/secondaryContainer" />
+			<solid android:color="@color/colorSecondaryAccent" />
 		</shape>
 	</item>
 	<!-- Normal -->
 	<item android:state_pressed="false" android:state_selected="false">
 		<shape android:shape="rectangle">
 			<corners android:radius="@dimen/_24sdp" />
-			<solid android:color="@color/secondary" />
+			<solid android:color="@color/colorSecondaryDark" />
 		</shape>
 	</item>
 	<!-- On Press -->
 	<item android:state_pressed="true" android:state_selected="true">
 		<shape android:shape="rectangle">
 			<corners android:radius="@dimen/_24sdp" />
-			<solid android:color="@color/secondary" />
+			<solid android:color="@color/colorSecondaryDark" />
 		</shape>
 	</item>
 </selector>

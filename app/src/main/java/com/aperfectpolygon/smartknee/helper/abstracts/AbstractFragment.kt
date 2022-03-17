@@ -11,7 +11,6 @@ import com.orhanobut.logger.Logger
 abstract class AbstractFragment : Fragment(), AbstractFrgInterface {
 
 	override lateinit var circularProgressDrawable: CircularProgressDrawable
-	override lateinit var rootLayout: View
 
 	override fun onResume() {
 		super.onResume()

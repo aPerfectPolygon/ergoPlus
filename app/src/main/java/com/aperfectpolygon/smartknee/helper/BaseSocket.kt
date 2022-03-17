@@ -5,8 +5,6 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonPrimitive
 import com.google.gson.JsonSerializer
 import com.google.gson.JsonSyntaxException
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.*
@@ -18,13 +16,6 @@ import java.net.InetAddress
 import java.net.Socket
 import java.nio.channels.SocketChannel
 import java.util.*
-
-data class SocketOutput(
-	@Expose @SerializedName("type") val type: String? = null,
-	@Expose @SerializedName("data") val data: ArrayList<Data>? = null,
-)
-
-data class Data(@Expose val status: String)
 
 object BaseSocket : Socket() {
 
@@ -39,12 +30,11 @@ object BaseSocket : Socket() {
 		fun onClose()
 		fun onConnect()
 		fun onDisconnect()
+		fun onRetry()
 		fun onSend(message: String)
 		fun onReceive(message: String)
-		fun onSymbolsReceived(symbols: ArrayList<Data>)
-		fun onSymbolUpdated(symbols: ArrayList<Data>)
-		fun onIndexesReceived(indexes: ArrayList<Data>)
-		fun onIndexesUpdated(indexes: ArrayList<Data>)
+		fun onEventReceived(event: Event)
+		fun onLogsReceived(event: Event)
 	}
 
 	interface OnCloseListener {
@@ -63,75 +53,70 @@ object BaseSocket : Socket() {
 		fun onDisconnect(socket: BaseSocket)
 	}
 
+	private interface OnRetryListener {
+		fun onRetry(socket: BaseSocket)
+	}
+
 	private interface OnReceiveListener {
 		fun onReceive(socket: BaseSocket, message: String)
 	}
 
-	private interface OnSymbolsReceivedListener {
-		fun onSymbolsReceived(socket: BaseSocket, symbols: ArrayList<Data>)
+	private interface OnEventReceivedListener {
+		fun onEventReceived(socket: BaseSocket, event: Event)
 	}
 
-	private interface OnIndexesReceivedListener {
-		fun onIndexesReceived(socket: BaseSocket, indexes: ArrayList<Data>)
-	}
-
-	private interface OnIndexesUpdatedListener {
-		fun onIndexesUpdated(socket: BaseSocket, indexes: ArrayList<Data>)
-	}
-
-	private interface OnSymbolUpdatedListener {
-		fun onSymbolUpdated(socket: BaseSocket, symbols: ArrayList<Data>)
+	private interface OnLogsReceivedListener {
+		fun onLogsReceived(socket: BaseSocket, event: Event)
 	}
 
 	private var onSocketEventListener = object : OnSocketEventListener {
 		override fun onClose() {
-			Logger.e("onClose")
+			Logger.e("Closed")
 			onCloseListener?.onClose(this@BaseSocket)
 		}
 
 		override fun onConnect() {
-			Logger.e("onConnect")
+			Logger.i("Connected")
 			onConnectListener?.onConnect(this@BaseSocket)
 		}
 
 		override fun onDisconnect() {
-			Logger.e("onDisconnect")
+			Logger.e("Disconnected")
 			onDisconnectListener?.onDisconnect(this@BaseSocket)
 		}
 
+		override fun onRetry() {
+			Logger.e("Disconnected")
+			onRetryListener?.onRetry(this@BaseSocket)
+		}
+
 		override fun onSend(message: String) {
+			Logger.i("Sent $message")
 			onSendListener?.onSend(this@BaseSocket, message)
 		}
 
 		override fun onReceive(message: String) {
+			Logger.i("Received $message")
 			onReceiveListener?.onReceive(this@BaseSocket, message)
 		}
 
-		override fun onSymbolsReceived(symbols: ArrayList<Data>) {
-			onSymbolsReceivedListener?.onSymbolsReceived(this@BaseSocket, symbols)
+		override fun onEventReceived(event: Event) {
+			Logger.i("Event received $event")
+			onEventReceivedListener?.onEventReceived(this@BaseSocket, event)
 		}
-
-		override fun onIndexesReceived(indexes: ArrayList<Data>) {
-			onIndexesReceivedListener?.onIndexesReceived(this@BaseSocket, indexes)
-		}
-
-		override fun onIndexesUpdated(indexes: ArrayList<Data>) {
-			onIndexesUpdatedListener?.onIndexesUpdated(this@BaseSocket, indexes)
-		}
-
-		override fun onSymbolUpdated(symbols: ArrayList<Data>) {
-			onSymbolUpdatedListener?.onSymbolUpdated(this@BaseSocket, symbols)
+		override fun onLogsReceived(event: Event) {
+			Logger.i("Logs received $event")
+			onLogsReceivedListener?.onLogsReceived(this@BaseSocket, event)
 		}
 	}
 	private var onConnectListener: OnConnectListener? = null
 	private var onCloseListener: OnCloseListener? = null
 	private var onDisconnectListener: OnDisconnectListener? = null
+	private var onRetryListener: OnRetryListener? = null
 	private var onReceiveListener: OnReceiveListener? = null
 	private var onSendListener: OnSendListener? = null
-	private var onSymbolsReceivedListener: OnSymbolsReceivedListener? = null
-	private var onIndexesReceivedListener: OnIndexesReceivedListener? = null
-	private var onIndexesUpdatedListener: OnIndexesUpdatedListener? = null
-	private var onSymbolUpdatedListener: OnSymbolUpdatedListener? = null
+	private var onEventReceivedListener: OnEventReceivedListener? = null
+	private var onLogsReceivedListener: OnLogsReceivedListener? = null
 
 	fun onConnect(cb: BaseSocket.() -> Unit) {
 		object : OnConnectListener {
@@ -149,6 +134,12 @@ object BaseSocket : Socket() {
 		}.also { this.onDisconnectListener = it }
 	}
 
+	fun onRetry(cb: BaseSocket.() -> Unit) {
+		object : OnRetryListener {
+			override fun onRetry(socket: BaseSocket) = cb(socket)
+		}.also { this.onRetryListener = it }
+	}
+
 	fun onSend(cb: BaseSocket.(message: String) -> Unit) {
 		object : OnSendListener {
 			override fun onSend(socket: BaseSocket, message: String) = cb(socket, message)
@@ -161,47 +152,36 @@ object BaseSocket : Socket() {
 		}.also { this.onReceiveListener = it }
 	}
 
-	fun onSymbolsReceived(cb: BaseSocket.(symbols: ArrayList<Data>) -> Unit) {
-		object : OnSymbolsReceivedListener {
-			override fun onSymbolsReceived(socket: BaseSocket, symbols: ArrayList<Data>) =
-				cb.invoke(socket, symbols)
-		}.also { this.onSymbolsReceivedListener = it }
+	fun onEventReceived(cb: BaseSocket.(event: Event) -> Unit) {
+		object : OnEventReceivedListener {
+			override fun onEventReceived(socket: BaseSocket, event: Event) =
+				cb.invoke(socket, event)
+		}.also { this.onEventReceivedListener = it }
 	}
 
-	fun onIndexesReceived(cb: BaseSocket.(symbols: ArrayList<Data>) -> Unit) {
-		object : OnIndexesReceivedListener {
-			override fun onIndexesReceived(socket: BaseSocket, indexes: ArrayList<Data>) =
-				cb.invoke(socket, indexes)
-		}.also { this.onIndexesReceivedListener = it }
+	fun onLogsReceived(cb: BaseSocket.(event: Event) -> Unit) {
+		object : OnLogsReceivedListener {
+			override fun onLogsReceived(socket: BaseSocket, event: Event) =
+				cb.invoke(socket, event)
+		}.also { this.onLogsReceivedListener = it }
 	}
 
-	fun onIndexesUpdated(cb: BaseSocket.(symbols: ArrayList<Data>) -> Unit) {
-		object : OnIndexesUpdatedListener {
-			override fun onIndexesUpdated(socket: BaseSocket, indexes: ArrayList<Data>) =
-				cb.invoke(socket, indexes)
-		}.also { this.onIndexesUpdatedListener = it }
-	}
-
-	fun onSymbolUpdated(cb: BaseSocket.(symbols: ArrayList<Data>) -> Unit) {
-		object : OnSymbolUpdatedListener {
-			override fun onSymbolUpdated(socket: BaseSocket, symbols: ArrayList<Data>) =
-				cb.invoke(socket, symbols)
-		}.also { this.onSymbolUpdatedListener = it }
-	}
+	var host: String = ""
 
 	fun connect() {
-		if (isClosed) runCatching {
+		if (isClosed) try {
 			runBlocking {
-				_socket = Socket("192.168.1.35", 8888).apply { soTimeout = 86_400_000 }
+				_socket = Socket(host, 8888).apply { soTimeout = 86_400_000 }
 			}
 			outPrintWriter = PrintWriter(outputStream!!)
-			// setTime
+			setTime
 			CoroutineScope(Dispatchers.IO).launch { _receive() }
+		} catch (e: Exception) {
+			Logger.e(e, e.message ?: "")
+		} finally {
+			_isClosed = false
+			onSocketEventListener.onConnect()
 		}
-		_isClosed = false
-		Logger.i("isClosed : $_isClosed")
-		Logger.i(_socket.toString())
-		// onSocketEventListener.onConnect()
 	}
 
 	private val gsonBuilder by lazy {
@@ -226,6 +206,7 @@ object BaseSocket : Socket() {
 	private fun _receive() {
 		if (_socket == null) {
 			CoroutineScope(Dispatchers.IO).launch {
+				onSocketEventListener.onRetry()
 				Logger.e(
 					Exception("SHOULD NOT HAPPEN", Throwable("_SOCKET IS NULL!!")),
 					"SHOULD NOT HAPPEN",
@@ -243,8 +224,14 @@ object BaseSocket : Socket() {
 				while (hasNextLine()) nextLine().apply {
 					if (!isNullOrEmpty()) removeSuffix(tagEnd).also { line ->
 						runCatching {
-							Logger.i("line: $line")
-						}.onFailure { Logger.e(it, it.message ?: "") }
+							line.convertSocketLine.also {
+								when (it.type) {
+									"event" -> onSocketEventListener.onEventReceived(it)
+									"logs" -> onSocketEventListener.onLogsReceived(it)
+									else -> onSocketEventListener.onReceive(line)
+								}
+							}
+						}
 					}
 				}
 			}
@@ -255,6 +242,7 @@ object BaseSocket : Socket() {
 	private fun String._send() {
 		if (outPrintWriter == null) {
 			CoroutineScope(Dispatchers.IO).launch {
+				onSocketEventListener.onRetry()
 				Logger.e(
 					Exception("SHOULD NOT HAPPEN", Throwable("_SOCKET IS NULL!!")), "SHOULD NOT HAPPEN",
 				)
@@ -269,7 +257,7 @@ object BaseSocket : Socket() {
 		runCatching {
 			runBlocking {
 				try {
-					outPrintWriter!!.print(this@_send)
+					outPrintWriter!!.print(this@_send + '\n')
 					outPrintWriter!!.flush()
 					onSocketEventListener.onSend(this@_send)
 				} catch (e: IOException) {
@@ -294,6 +282,7 @@ object BaseSocket : Socket() {
 				_socket?.close()
 				if (!_isClosed) {
 					_isClosed = true
+					outPrintWriter = null
 					onSocketEventListener.onClose()
 				}
 				return true
@@ -308,14 +297,19 @@ object BaseSocket : Socket() {
 		}
 	}
 
-	val setTime: String
-		get() = "time${System.currentTimeMillis().div(1000)}"
+	val setTime: Unit get() = "time${System.currentTimeMillis().div(1000)}".send()
 
-	val readAndFlush: String
-		get() = "readAndFlush"
+	val event0: Unit get() = "event0".send()
 
-	val readVoltage: String
-		get() = "readVoltage"
+	val event1: Unit get() = "event1".send()
+
+	val readAndFlush: Unit get() = "readAndFlush".send()
+
+	val read: Unit get() = "read".send()
+
+	val flush: Unit get() = "flush".send()
+
+	val readVoltage: Unit get() = "readVoltage".send()
 
 	override fun isClosed(): Boolean = _socket?.isClosed ?: true
 	override fun isConnected(): Boolean = !isClosed

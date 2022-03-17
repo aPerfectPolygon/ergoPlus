@@ -36,8 +36,8 @@ fun Context.snackBar(
 ) = Snackbar.make(rootLayout, text, duration).apply {
 	animationMode = BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 	when {
-		isError -> android.R.color.holo_red_dark
-		else -> android.R.color.holo_green_dark
+		isError -> R.color.red
+		else -> R.color.green
 	}.also { setBackgroundTint(getColor(it)) }
 	if (fontSTYLE == FontSTYLE.BOLD) boldFont else normalFont
 	if (anchorView != null) setAnchorView(anchorView)
@@ -61,8 +61,8 @@ fun Context.snackBar(
 ) = Snackbar.make(rootLayout, getString(text), duration).apply {
 	animationMode = BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 	when {
-		isError -> android.R.color.holo_red_dark
-		else -> android.R.color.holo_green_dark
+		isError -> R.color.red
+		else -> R.color.green
 	}.also { setBackgroundTint(getColor(it)) }
 	if (fontSTYLE == FontSTYLE.BOLD) boldFont else normalFont
 	if (anchorView != null) setAnchorView(anchorView)
