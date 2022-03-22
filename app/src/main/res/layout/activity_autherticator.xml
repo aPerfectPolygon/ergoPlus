@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/windowBackground">
+	android:background="@color/windowBackground"
+	tools:context="com.aperfectpolygon.ergoplus.ui.auth.AuthenticatorActivity">
 
 	<View
 		android:id="@+id/v_header"
@@ -25,7 +27,8 @@
 			android:layout_margin="@dimen/_24sdp"
 			android:fontFamily="@font/comfortaa_bold"
 			android:text="Registrieren"
-			android:textSize="@dimen/_14sdp"
+			android:textColor="#003835"
+			android:textSize="@dimen/_18sdp"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,11 +58,18 @@
 
 		<com.google.android.material.textfield.TextInputLayout
 			android:id="@+id/til_username"
-			style="?textInputFilledStyle"
+			style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="@dimen/_24sdp"
-			android:layout_marginTop="@dimen/_8sdp"
+			android:layout_marginVertical="@dimen/_8sdp"
+			android:elevation="@dimen/_24sdp"
+			app:boxBackgroundColor="#C5F1F1"
+			app:boxBackgroundMode="outline"
+			app:boxCornerRadiusBottomEnd="@dimen/_24sdp"
+			app:boxCornerRadiusBottomStart="@dimen/_24sdp"
+			app:boxCornerRadiusTopEnd="@dimen/_24sdp"
+			app:boxCornerRadiusTopStart="@dimen/_24sdp"
 			app:layout_constraintTop_toBottomOf="@id/img_avatar">
 
 			<com.google.android.material.textfield.TextInputEditText
@@ -74,25 +84,32 @@
 				android:padding="@dimen/_8sdp"
 				android:selectAllOnFocus="true"
 				android:singleLine="true"
-				android:textColor="@color/titleTextColor"
-				android:textColorHint="@color/subTitleTextColor"
+				android:textColor="#003835"
+				android:textColorHint="#003835"
 				android:textSize="@dimen/_12sdp" />
 		</com.google.android.material.textfield.TextInputLayout>
 
 		<androidx.constraintlayout.widget.ConstraintLayout
 			android:id="@+id/c_birth_date"
+			style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="@dimen/_24sdp"
-			android:layout_marginVertical="@dimen/_3sdp"
+			android:layout_marginVertical="@dimen/_8sdp"
+			android:elevation="@dimen/_24sdp"
 			app:layout_constraintTop_toBottomOf="@id/til_username">
 
 			<com.google.android.material.textfield.TextInputLayout
 				android:id="@+id/til_birth_date"
-				style="?textInputFilledStyle"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_centerInParent="true"
+				app:boxBackgroundColor="#C5F1F1"
+				app:boxBackgroundMode="outline"
+				app:boxCornerRadiusBottomEnd="@dimen/_24sdp"
+				app:boxCornerRadiusBottomStart="@dimen/_24sdp"
+				app:boxCornerRadiusTopEnd="@dimen/_24sdp"
+				app:boxCornerRadiusTopStart="@dimen/_24sdp"
 				app:errorTextColor="@color/red"
 				app:hintTextColor="@color/mid_gray"
 				app:layout_constraintBottom_toBottomOf="parent"
@@ -112,8 +129,8 @@
 					android:padding="@dimen/_8sdp"
 					android:selectAllOnFocus="true"
 					android:singleLine="true"
-					android:textColor="@color/titleTextColor"
-					android:textColorHint="@color/subTitleTextColor"
+					android:textColor="#003835"
+					android:textColorHint="#003835"
 					android:textSize="@dimen/_12sdp" />
 			</com.google.android.material.textfield.TextInputLayout>
 
@@ -129,11 +146,18 @@
 
 		<com.google.android.material.textfield.TextInputLayout
 			android:id="@+id/til_mail"
-			style="?textInputFilledStyle"
+			style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="@dimen/_24sdp"
 			android:layout_marginTop="@dimen/_8sdp"
+			android:elevation="@dimen/_24sdp"
+			app:boxBackgroundColor="#C5F1F1"
+			app:boxBackgroundMode="outline"
+			app:boxCornerRadiusBottomEnd="@dimen/_24sdp"
+			app:boxCornerRadiusBottomStart="@dimen/_24sdp"
+			app:boxCornerRadiusTopEnd="@dimen/_24sdp"
+			app:boxCornerRadiusTopStart="@dimen/_24sdp"
 			app:layout_constraintTop_toBottomOf="@id/c_birth_date">
 
 			<com.google.android.material.textfield.TextInputEditText
@@ -148,18 +172,25 @@
 				android:padding="@dimen/_8sdp"
 				android:selectAllOnFocus="true"
 				android:singleLine="true"
-				android:textColor="@color/titleTextColor"
-				android:textColorHint="@color/subTitleTextColor"
+				android:textColor="#003835"
+				android:textColorHint="#003835"
 				android:textSize="@dimen/_12sdp" />
 		</com.google.android.material.textfield.TextInputLayout>
 
 		<com.google.android.material.textfield.TextInputLayout
 			android:id="@+id/til_password"
-			style="?textInputFilledStyle"
+			style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginHorizontal="@dimen/_24sdp"
 			android:layout_marginTop="@dimen/_8sdp"
+			android:elevation="@dimen/_24sdp"
+			app:boxBackgroundColor="#C5F1F1"
+			app:boxBackgroundMode="outline"
+			app:boxCornerRadiusBottomEnd="@dimen/_24sdp"
+			app:boxCornerRadiusBottomStart="@dimen/_24sdp"
+			app:boxCornerRadiusTopEnd="@dimen/_24sdp"
+			app:boxCornerRadiusTopStart="@dimen/_24sdp"
 			app:layout_constraintTop_toBottomOf="@id/til_mail"
 			app:passwordToggleEnabled="true">
 
@@ -175,8 +206,8 @@
 				android:padding="@dimen/_8sdp"
 				android:selectAllOnFocus="true"
 				android:singleLine="true"
-				android:textColor="@color/titleTextColor"
-				android:textColorHint="@color/subTitleTextColor"
+				android:textColor="#003835"
+				android:textColorHint="#003835"
 				android:textSize="@dimen/_12sdp" />
 		</com.google.android.material.textfield.TextInputLayout>
 
@@ -187,7 +218,9 @@
 			android:layout_marginEnd="@dimen/_24sdp"
 			android:fontFamily="@font/comfortaa_bold"
 			android:justificationMode="inter_word"
+			android:paddingStart="@dimen/_8sdp"
 			android:text="Mit der Anmeldung bestätige ich, dass ich die Allgemeinen Geschäftsbedingungen und die Datenschutzerklärung gelesen habe und ihnen zustimme."
+			android:textColor="#003835"
 			android:textSize="@dimen/_11sdp"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toEndOf="@id/checkbox"
@@ -200,9 +233,10 @@
 			android:layout_marginStart="@dimen/_24sdp"
 			android:layout_marginTop="@dimen/_8sdp"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/til_password" />
+			app:layout_constraintTop_toBottomOf="@id/til_password"
+			app:thumbTint="@color/white" />
 
-		<com.google.android.material.button.MaterialButton
+		<androidx.appcompat.widget.AppCompatButton
 			android:id="@+id/btn_signup"
 			style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
 			android:layout_width="match_parent"
@@ -227,6 +261,9 @@
 		android:id="@+id/txt_welcome"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:textAllCaps="true"
+		android:textSize="@dimen/_24sdp"
 		android:visibility="gone"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.aperfectpolygon.smartknee">
+	package="com.aperfectpolygon.ergoplus">
 
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
@@ -9,7 +9,7 @@
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 	<application
-		android:name=".helper.App"
+		android:name="com.aperfectpolygon.ergoplus.helper.App"
 		android:allowBackup="true"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
@@ -17,19 +17,35 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
 		<activity
-			android:name=".ui.chart.ChartActivity"
-			android:exported="false" />
-		<activity
-			android:name=".ui.auth.AuthenticatorActivity"
+			android:name="com.aperfectpolygon.ergoplus.ui.sport.SportActivity"
 			android:exported="false"
+			android:launchMode="singleInstance"
 			android:theme="@style/AppTheme" />
 		<activity
-			android:name=".ui.dashboard.DashboardActivity"
+			android:name="com.aperfectpolygon.ergoplus.ui.settings.SettingsActivity"
 			android:exported="false"
+			android:launchMode="singleInstance"
 			android:theme="@style/AppTheme" />
 		<activity
-			android:name=".ui.launcher.LauncherActivity"
+			android:name="com.aperfectpolygon.ergoplus.ui.chart.ChartActivity"
+			android:exported="false"
+			android:launchMode="singleInstance"
+			android:theme="@style/AppTheme" />
+		<activity
+			android:name="com.aperfectpolygon.ergoplus.ui.auth.AuthenticatorActivity"
+			android:exported="false"
+			android:launchMode="singleInstance"
+			android:theme="@style/AppTheme" />
+		<activity
+			android:name="com.aperfectpolygon.ergoplus.ui.dashboard.DashboardActivity"
+			android:exported="false"
+			android:launchMode="singleInstance"
+			android:noHistory="true"
+			android:theme="@style/AppTheme" />
+		<activity
+			android:name="com.aperfectpolygon.ergoplus.ui.launcher.LauncherActivity"
 			android:exported="true"
+			android:launchMode="singleInstance"
 			android:theme="@style/AppTheme">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />

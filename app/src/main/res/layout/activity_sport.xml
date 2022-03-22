@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/windowBackground"
+	tools:context=".ui.sport.SportActivity">
+
+	<View
+		android:id="@+id/v_header"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/_48sdp"
+		android:background="@drawable/dr_header"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<com.google.android.material.textview.MaterialTextView
+		android:id="@+id/txt_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/_24sdp"
+		android:text="Sport"
+		android:textColor="#029991"
+		android:textSize="@dimen/_18sdp"
+		app:layout_constraintTop_toBottomOf="@id/v_header" />
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/recycler_view"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintTop_toBottomOf="@id/txt_title"
+		tools:listitem="@layout/rcv_sport" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_gym"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_margin="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:rotation="-45"
+		android:src="@drawable/vtr_gym"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintEnd_toStartOf="@id/img_avatar"
+		app:layout_constraintTop_toTopOf="@id/img_avatar" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_chart"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_marginStart="@dimen/_8sdp"
+		android:layout_marginBottom="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/vtr_chart"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintStart_toEndOf="@id/img_gym" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_gifts"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_marginEnd="@dimen/_8sdp"
+		android:layout_marginBottom="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/vtr_gift"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintEnd_toStartOf="@id/img_vibrate" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_vibrate"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_margin="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/vtr_vibrate"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintStart_toEndOf="@id/img_avatar"
+		app:layout_constraintTop_toTopOf="@id/img_avatar" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_avatar"
+		android:layout_width="@dimen/_48sdp"
+		android:layout_height="@dimen/_48sdp"
+		android:layout_marginBottom="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/dr_btn"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

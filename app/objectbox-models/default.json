@@ -36,30 +36,6 @@
         }
       ],
       "relations": []
-    },
-    {
-      "id": "2:36102519183513586",
-      "lastPropertyId": "4:3196368416794802407",
-      "name": "Event",
-      "properties": [
-        {
-          "id": "1:1374770807251746915",
-          "name": "id",
-          "type": 6,
-          "flags": 1
-        },
-        {
-          "id": "2:6622902363994005394",
-          "name": "type",
-          "type": 9
-        },
-        {
-          "id": "4:3196368416794802407",
-          "name": "_data",
-          "type": 9
-        }
-      ],
-      "relations": []
     }
   ],
   "lastEntityId": "2:36102519183513586",
@@ -68,7 +44,9 @@
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    36102519183513586
+  ],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
     383884509706084603,
@@ -111,7 +89,10 @@
     6702226594511752503,
     8318887998017028676,
     8835923595318412020,
-    3633955719367410906
+    3633955719367410906,
+    1374770807251746915,
+    6622902363994005394,
+    3196368416794802407
   ],
   "retiredRelationUids": [],
   "version": 1

@@ -1,0 +1,191 @@
+# -keep public class com.aperfectpolygon.ergoplus.*
+# -keep public class com.atosetas.candle.**
+# -keep public class com.aperfectpolygon.ergoplus.** { *; }
+# -keepclassmembers class com.aperfectpolygon.ergoplus.AppConst
+# -keepclassmembers class com.aperfectpolygon.ergoplus.AppData
+# -keepclassmembers class com.aperfectpolygon.ergoplus.Broker
+# -keepclassmembers class com.aperfectpolygon.ergoplus.Converter
+# -keepclassmembers class com.aperfectpolygon.ergoplus.ObjectBox
+# -keepclassmembers class com.aperfectpolygon.ergoplus.Parser
+# -keepclassmembers class com.aperfectpolygon.ergoplus.States
+# -keepclassmembers class com.aperfectpolygon.ergoplus.AppConst { *; }
+# -keepclassmembers class com.aperfectpolygon.ergoplus.AppData { *; }
+# -keepclassmembers class com.aperfectpolygon.ergoplus.Broker { *; }
+# -keepclassmembers class com.aperfectpolygon.ergoplus.Converter { *; }
+# -keepclassmembers class com.aperfectpolygon.ergoplus.ObjectBox { *; }
+# -keepclassmembers class com.aperfectpolygon.ergoplus.Parser { *; }
+# -keepclassmembers class com.aperfectpolygon.ergoplus.States { *; }
+# -keep class com.aperfectpolygon.ergoplus.api.** { *; }
+-keepclassmembers class com.aperfectpolygon.ergoplus.helper.App
+-keep class com.aperfectpolygon.ergoplus.config.** { *; }
+-keep class com.aperfectpolygon.ergoplus.config.**  {
+   <fields>;
+   <init>();
+   <methods>;
+}
+-keep class com.aperfectpolygon.ergoplus.** { *; }
+-keep interface com.aperfectpolygon.ergoplus.**
+-keep class com.aperfectpolygon.ergoplus.data.** { *; }
+-keepclassmembers class com.aperfectpolygon.ergoplus.model.** { *; }
+-keep class com.aperfectpolygon.ergoplus.database.** { *; }
+-keep interface com.aperfectpolygon.ergoplus.interfaces.** { *; }
+-keep class com.aperfectpolygon.ergoplus.services.** { *; }
+# -keep class com.aperfectpolygon.ergoplus.sockets.** { *; }
+# -keep class com.aperfectpolygon.ergoplus.ui.** { *; }
+-keep class com.aperfectpolygon.ergoplus.ui.container.** { *; }
+-keep class com.aperfectpolygon.ergoplus.ui.main.** { *; }
+-keep class com.aperfectpolygon.ergoplus.ui.candleyaar.** { *; }
+-keep class com.aperfectpolygon.ergoplus.utils.** { *; }
+-keep class com.candlebourse.candleapp.ui.menu.settings.notification_settings.NotificationSettingsFrg.** { *; }
+-keep class com.android.vending.billing.**
+# Parcelable
+-keepclassmembers class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator CREATOR;
+}
+
+#androidx
+-dontwarn com.google.android.material.**
+-keep class com.google.android.material.** { *; }
+
+-dontwarn androidx.**
+-keep class androidx.** { *; }
+-keep interface androidx.** { *; }
+
+-dontwarn android.support.v4.**
+-keep class android.support.v4.** { *; }
+
+-dontwarn android.support.v7.**
+-keep class android.support.v7.** { *; }
+
+-keep public class * extends androidx.recyclerview.widget.RecyclerView$LayoutManager {
+    public <init>(android.content.Context, android.util.AttributeSet, int, int);
+    public <init>();
+}
+-keepclassmembers class androidx.recyclerview.widget.RecyclerView {
+    public void suppressLayout(boolean);
+    public boolean isLayoutSuppressed();
+}
+
+# Retrofit
+-dontwarn retrofit2.**
+-dontwarn org.codehaus.mojo.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+-keepattributes *Annotation*
+
+-keepattributes RuntimeVisibleAnnotations
+-keepattributes RuntimeInvisibleAnnotations
+-keepattributes RuntimeVisibleParameterAnnotations
+-keepattributes RuntimeInvisibleParameterAnnotations
+
+-keepattributes EnclosingMethod
+
+-keepclasseswithmembers class * {
+    @retrofit2.* <methods>;
+}
+
+-keepclasseswithmembers interface * {
+    @retrofit2.* <methods>;
+}
+# Platform calls Class.forName on types which do not exist on Android to determine platform.
+-dontnote retrofit2.Platform
+# Platform used when running on RoboVM on iOS. Will not be used at runtime.
+-dontnote retrofit2.Platform$IOS$MainThreadExecutor
+# Platform used when running on Java 8 VMs. Will not be used at runtime.
+-dontwarn retrofit2.Platform$Java8
+# Retain generic type information for use by reflection by converters and adapters.
+-keepattributes Signature
+# Retain declared checked exceptions for use by a Proxy instance.
+-keepattributes Exceptions
+
+##--- Begin:GSON ----
+# Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+#-keep class com.google.gson.stream.** { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+-keep class com.google.gson.examples.android.model.** { *; }
+
+# Prevent proguard from stripping interface information from TypeAdapterFactory,
+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+# keep enum so gson can deserialize it
+-keepclassmembers enum * { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+-keep class net.mreunionlabs.wob.model.request.** { *; }
+-keep class net.mreunionlabs.wob.model.response.** { *; }
+-keep class net.mreunionlabs.wob.model.gson.** { *; }
+##--- End:GSON ----
+
+# lottie
+-dontwarn com.airbnb.lottie.**
+-keep class com.airbnb.lottie.** {*;}
+
+# RCTMGLAndroidTextureMapView
+-keep class com.mapbox.rctmgl.components.** { *; }
+-dontwarn com.mapbox.rctmgl.components.**
+
+
+# okhttp
+
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-dontwarn okhttp3.**
+
+# okio
+
+-keep class sun.misc.Unsafe { *; }
+-dontwarn java.nio.file.*
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontwarn okio.**
+
+# Firebase Notification, Crashlytics, Analytics
+-keep class io.invertase.firebase.** { *; }
+-keep class io.invertase.firebase.messaging.** { *; }
+-keep class android.app.MiuiNotification { *; }
+
+# Gson specific classes
+-keep class com.google.gson.stream.** { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+-keep class com.google.gson.examples.android.model.** { *; }
+
+# Prevent proguard from stripping interface information from TypeAdapterFactory,
+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+-keep class com.google.firebase.** { *; }
+
+-keep class com.google.android.gms.** { *; }
+-keep class com.google.protobuf.**
+
+# if using notifications from RNFirebase
+-keep class me.leolin.shortcutbadger.** { *; }
+
+-keep class com.google.android.gms.** { *; }
+
+# logback
+-keep class ch.qos.** { *; }
+-keep class org.slf4j.** { *; }
+-dontwarn ch.qos.logback.core.net.*
+
+# OkHttp3
+-dontwarn okio.**
+
+-keep class com.github.aachartmodel.aainfographics.** { *; }

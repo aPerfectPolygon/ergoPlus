@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/windowBackground"
+	tools:context=".ui.settings.SettingsActivity">
+
+	<View
+		android:id="@+id/v_header"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/_48sdp"
+		android:background="@drawable/dr_header"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<com.google.android.material.textview.MaterialTextView
+		android:id="@+id/txt_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/_24sdp"
+		android:text="Alarm"
+		android:textColor="#029991"
+		android:textSize="@dimen/_18sdp"
+		app:layout_constraintTop_toBottomOf="@id/v_header" />
+
+	<com.google.android.material.textview.MaterialTextView
+		android:id="@+id/txt_sub"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/_24sdp"
+		android:gravity="center"
+		android:text="Wenn ich versuche, mein Bein auf das andere Bein zu setzen, warne mich:"
+		android:textColor="#029991"
+		android:textSize="@dimen/_14sdp"
+		app:layout_constraintTop_toBottomOf="@id/txt_title" />
+
+	<com.google.android.material.switchmaterial.SwitchMaterial
+		android:id="@+id/switch_phone"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/_24sdp"
+		android:layoutDirection="rtl"
+		android:text="Vibration des Handy"
+		android:textColor="#029991"
+		app:layout_constraintTop_toBottomOf="@id/txt_sub"
+		app:switchPadding="@dimen/_8sdp"
+		app:thumbTint="@color/white"
+		app:useMaterialThemeColors="true" />
+
+	<com.google.android.material.switchmaterial.SwitchMaterial
+		android:id="@+id/switch_band"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/_24sdp"
+		android:checked="true"
+		android:layoutDirection="rtl"
+		android:text="Vibration des Bands"
+		android:textColor="#029991"
+		app:layout_constraintTop_toBottomOf="@id/switch_phone"
+		app:switchPadding="@dimen/_8sdp"
+		app:thumbTint="@color/white"
+		app:useMaterialThemeColors="true" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_gym"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_margin="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:rotation="-45"
+		android:src="@drawable/vtr_gym"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintEnd_toStartOf="@id/img_avatar"
+		app:layout_constraintTop_toTopOf="@id/img_avatar" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_chart"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_marginStart="@dimen/_8sdp"
+		android:layout_marginBottom="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/vtr_chart"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintStart_toEndOf="@id/img_gym" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_gifts"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_marginEnd="@dimen/_8sdp"
+		android:layout_marginBottom="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/vtr_gift"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintEnd_toStartOf="@id/img_vibrate" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_vibrate"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_margin="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/vtr_vibrate"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintStart_toEndOf="@id/img_avatar"
+		app:layout_constraintTop_toTopOf="@id/img_avatar" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_avatar"
+		android:layout_width="@dimen/_48sdp"
+		android:layout_height="@dimen/_48sdp"
+		android:layout_marginBottom="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/dr_btn"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

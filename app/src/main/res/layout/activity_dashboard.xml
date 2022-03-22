@@ -10,13 +10,24 @@
 		android:id="@+id/v_top"
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/_150sdp"
-		android:background="@drawable/dr_dashboardbg"
+		android:background="#3B867E"
 		app:layout_constraintTop_toTopOf="parent" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/_40sdp"
+		android:background="#F49B7F"
+		android:elevation="@dimen/_24sdp"
+		app:layout_constraintBottom_toBottomOf="@id/v_top"
+		app:layout_constraintEnd_toEndOf="@id/v_top"
+		app:layout_constraintStart_toStartOf="@id/v_top"
+		app:layout_constraintTop_toTopOf="@id/v_top" />
 
 	<androidx.appcompat.widget.AppCompatImageView
 		android:id="@+id/img_avatar"
-		android:layout_width="@dimen/_150sdp"
-		android:layout_height="@dimen/_150sdp"
+		android:layout_width="@dimen/_125sdp"
+		android:layout_height="@dimen/_125sdp"
+		android:elevation="@dimen/_24sdp"
 		android:src="@drawable/shape_circle"
 		app:layout_constraintBottom_toBottomOf="@id/v_top"
 		app:layout_constraintEnd_toEndOf="@id/v_top"
@@ -28,7 +39,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:gravity="center"
-		app:layout_constraintTop_toBottomOf="@id/img_avatar" />
+		app:layout_constraintTop_toBottomOf="@id/v_top" />
 
 	<androidx.appcompat.widget.LinearLayoutCompat
 		android:layout_width="0dp"
@@ -74,6 +85,7 @@
 			<androidx.appcompat.widget.AppCompatImageView
 				android:id="@+id/img_gym"
 				android:layout_width="match_parent"
+				android:rotation="-45"
 				android:layout_height="match_parent"
 				android:layout_margin="@dimen/_24sdp"
 				android:layout_weight="1"
