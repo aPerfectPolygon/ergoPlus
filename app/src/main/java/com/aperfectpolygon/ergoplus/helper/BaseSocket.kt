@@ -261,6 +261,7 @@ object BaseSocket : Socket() {
 		runCatching {
 			runBlocking {
 				try {
+					Logger.i("sending ${this@_send}")
 					outPrintWriter!!.print(this@_send + '\n')
 					outPrintWriter!!.flush()
 					onSocketEventListener.onSend(this@_send)

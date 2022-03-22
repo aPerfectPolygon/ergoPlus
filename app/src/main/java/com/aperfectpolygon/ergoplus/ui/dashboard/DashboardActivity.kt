@@ -5,9 +5,11 @@ package com.aperfectpolygon.ergoplus.ui.dashboard
 import android.net.Uri
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.aperfectpolygon.ergoplus.R
 import com.aperfectpolygon.ergoplus.database.user.UserRepository
 import com.aperfectpolygon.ergoplus.databinding.ActivityDashboardBinding
 import com.aperfectpolygon.ergoplus.helper.ActivityHelper.moveTo
+import com.aperfectpolygon.ergoplus.helper.BaseSocket.readAndFlush
 import com.aperfectpolygon.ergoplus.helper.RoundedCornersTransformation
 import com.aperfectpolygon.ergoplus.helper.abstracts.AbstractActivity
 import com.aperfectpolygon.ergoplus.ui.chart.ChartActivity
@@ -25,12 +27,12 @@ class DashboardActivity : AbstractActivity() {
 		super.onCreate(savedInstanceState)
 		binding = ActivityDashboardBinding.inflate(layoutInflater).apply {
 			setContentView(root)
-			Uri.parse(UserRepository.avatar)?.let { fileUri ->
-				circularProgressDrawable = CircularProgressDrawable(this@DashboardActivity).apply {
-					strokeWidth = 5f
-					centerRadius = 30f
-					start()
-				}
+			circularProgressDrawable = CircularProgressDrawable(this@DashboardActivity).apply {
+				strokeWidth = 5f
+				centerRadius = 30f
+				start()
+			}
+			if (UserRepository.avatar.isNotEmpty()) Uri.parse(UserRepository.avatar)?.let { fileUri ->
 				Glide.with(this@DashboardActivity).load(fileUri).placeholder(circularProgressDrawable)
 					.apply(
 						bitmapTransform(
@@ -42,10 +44,26 @@ class DashboardActivity : AbstractActivity() {
 								border = 0
 							)
 						)
-					).into(imgAvatar)
-			}
+					).fallback(R.drawable.vtr_logo).into(imgAvatar)
+			} else Glide.with(this@DashboardActivity).load(R.drawable.vtr_logo)
+				.placeholder(circularProgressDrawable)
+				.fallback(R.drawable.vtr_logo)
+				.apply(
+					bitmapTransform(
+						RoundedCornersTransformation(
+							context = this@DashboardActivity,
+							radius = 250,
+							margin = 0,
+							color = "#00000000",
+							border = 0
+						)
+					)
+				).into(imgAvatar)
 			txtUsername.text = UserRepository.username
-			imgChart.setOnClickListener { moveTo(this@DashboardActivity, ChartActivity()) }
+			imgChart.setOnClickListener {
+				readAndFlush
+				moveTo(this@DashboardActivity, ChartActivity())
+			}
 			imgGifts.setOnClickListener { /*moveTo(this@DashboardActivity, ChartActivity())*/ }
 			imgGym.setOnClickListener { moveTo(this@DashboardActivity, SportActivity()) }
 			imgVibrate.setOnClickListener { moveTo(this@DashboardActivity, SettingsActivity()) }

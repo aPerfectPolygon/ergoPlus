@@ -2,12 +2,14 @@ package com.aperfectpolygon.ergoplus.ui.auth
 
 import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.icu.util.Calendar
 import android.icu.util.Calendar.*
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -57,7 +59,7 @@ class AuthenticatorActivity : AbstractActivity() {
 				try {
 					ImagePicker.with(this@AuthenticatorActivity).cropSquare().compress(1024).galleryOnly()
 						.galleryMimeTypes(arrayOf("image/jpg", "image/JPG", "image/jpeg", "image/png"))
-						.maxResultSize(1080, 1080).cropSquare().start()
+						.maxResultSize(1080, 1080).createIntent { startForProfileImageResult.launch(it) }
 				} catch (e: Exception) {
 					Logger.e(e, e.message ?: "")
 				}
@@ -101,47 +103,45 @@ class AuthenticatorActivity : AbstractActivity() {
 	private var file: File? = null
 	private var filePath: String? = null
 
-	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-		Logger.w("requestCode --> $requestCode, resultCode --> $resultCode")
-		when (resultCode) {
-			Activity.RESULT_OK -> {
-				//Image Uri will not be null for RESULT_OK
-				val fileUri = data?.data
-				Logger.w("fileUri --> $fileUri")
-				if (fileUri == null) {
-					file = null
-					filePath = null
-					return
-				}
-				circularProgressDrawable = CircularProgressDrawable(this).apply {
-					strokeWidth = 5f
-					centerRadius = 30f
-					start()
-				}
-				Glide.with(this).load(fileUri).placeholder(circularProgressDrawable).apply(
-					bitmapTransform(
-						RoundedCornersTransformation(
-							context = this,
-							radius = 250,
-							margin = 0,
-							color = "#00000000",
-							border = 0
+	private val startForProfileImageResult =
+		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+			val resultCode = result.resultCode
+			val data = result.data
+
+			when (resultCode) {
+				Activity.RESULT_OK -> {
+					//Image Uri will not be null for RESULT_OK
+					val fileUri = data?.data
+					Logger.w("fileUri --> $fileUri")
+					if (fileUri == null) {
+						file = null
+						filePath = null
+						return@registerForActivityResult
+					}
+					circularProgressDrawable = CircularProgressDrawable(this).apply {
+						strokeWidth = 5f
+						centerRadius = 30f
+						start()
+					}
+					Glide.with(this).load(fileUri).placeholder(circularProgressDrawable).apply(
+						bitmapTransform(
+							RoundedCornersTransformation(
+								context = this,
+								radius = 250,
+								margin = 0,
+								color = "#00000000",
+								border = 0
+							)
 						)
-					)
-				).into(binding.imgAvatar)
-				// You can get File object from intent
-				file = ImagePicker.getFile(data)!!
-				// You can also get File Path from intent
-				filePath = ImagePicker.getFilePath(data)!!
-				UserRepository.avatar = fileUri.toString()
-				Logger.w("filePath --> $filePath")
-				binding.txtAvatar.isGone = true
+					).fallback(R.drawable.vtr_logo).into(binding.imgAvatar)
+					// You can get File object from intent
+					UserRepository.avatar = fileUri.toString()
+					binding.txtAvatar.isGone = true
+				}
+				RESULT_ERROR -> Toast.makeText(this, getError(data), Toast.LENGTH_SHORT).show()
+				else -> Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
 			}
-			RESULT_ERROR -> snackBar(binding.root, getError(data)).show()
-			else -> snackBar(binding.root, "Task Cancelled").show()
 		}
-		super.onActivityResult(requestCode, resultCode, data)
-	}
 
 	override lateinit var circularProgressDrawable: CircularProgressDrawable
 }

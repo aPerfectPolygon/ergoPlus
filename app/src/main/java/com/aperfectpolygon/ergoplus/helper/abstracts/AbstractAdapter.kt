@@ -7,6 +7,7 @@ import androidx.annotation.ColorRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.aperfectpolygon.ergoplus.R
 import com.aperfectpolygon.ergoplus.helper.clickListener.OnItemClickListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -82,19 +83,23 @@ abstract class AbstractAdapter<VH : RecyclerView.ViewHolder?, T> : RecyclerView.
 	 * @param resId is the image resourceId
 	 */
 	fun ImageView.setImageResourceWithGlide(resId: Int) = try {
-		Glide.with(this).load(resId).placeholder(circularProgressDrawable).into(this)
+		Glide.with(this).load(resId)
+			.placeholder(circularProgressDrawable)
+			.fallback(R.drawable.vtr_logo).into(this)
 	} catch (e: Exception) {
 		Logger.e(e, e.message ?: "")
 	}
 
 	fun AppCompatImageView.setImageResourceWithGlide(resId: Int) = try {
-		Glide.with(this).load(resId).placeholder(circularProgressDrawable).into(this)
+		Glide.with(this).load(resId).placeholder(circularProgressDrawable)
+			.fallback(R.drawable.vtr_logo).into(this)
 	} catch (e: Exception) {
 		Logger.e(e, e.message ?: "")
 	}
 
 	fun AppCompatImageView.setImageResourceWithGlide(url: String) = try {
 		Glide.with(this).load(GlideUrl(url)).centerCrop().placeholder(circularProgressDrawable)
+			.fallback(R.drawable.vtr_logo)
 			.diskCacheStrategy(DiskCacheStrategy.ALL).into(this)
 	} catch (e: Exception) {
 		Logger.e(e, e.message ?: "")

@@ -1,7 +1,6 @@
 package com.aperfectpolygon.ergoplus.ui.sport
 
 import android.content.Context
-import android.media.MediaMetadataRetriever
 import android.os.Handler
 import android.os.Looper
 import android.view.View
@@ -13,7 +12,7 @@ import com.aperfectpolygon.ergoplus.databinding.RcvSportBinding
 import com.aperfectpolygon.ergoplus.helper.abstracts.AbstractAdapter
 import com.aperfectpolygon.ergoplus.utils.openUrl
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.DiskCacheStrategy.ALL
 
 
 data class Sport(val title: String, val url: String)
@@ -33,14 +32,9 @@ class SportAdapter(context: Context, items: List<Sport>) :
 					start()
 				}
 				Handler(Looper.myLooper() ?: Looper.getMainLooper()).post {
-					MediaMetadataRetriever().apply {
-						setDataSource(items[position].url, HashMap())
-						getFrameAtTime(2000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)?.also {
-							// items[position].cache = it
-							Glide.with(image).asBitmap().load(it).placeholder(circularProgressDrawable)
-								.diskCacheStrategy(DiskCacheStrategy.ALL).into(image)
-						}
-					}.release()
+					Glide.with(image).asBitmap().load(items[position].url)
+						.placeholder(circularProgressDrawable)
+						.fallback(R.drawable.vtr_logo).diskCacheStrategy(ALL).into(image)
 				}
 			}
 		}

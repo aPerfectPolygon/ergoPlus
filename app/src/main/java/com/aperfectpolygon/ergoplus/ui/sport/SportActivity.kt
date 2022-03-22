@@ -6,6 +6,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.aperfectpolygon.ergoplus.R
 import com.aperfectpolygon.ergoplus.database.user.UserRepository
 import com.aperfectpolygon.ergoplus.databinding.ActivitySportBinding
 import com.aperfectpolygon.ergoplus.helper.ActivityHelper.moveTo
@@ -26,12 +27,12 @@ class SportActivity : AbstractActivity() {
 		super.onCreate(savedInstanceState)
 		binding = ActivitySportBinding.inflate(layoutInflater).apply {
 			setContentView(root)
-			Uri.parse(UserRepository.avatar)?.let { fileUri ->
-				circularProgressDrawable = CircularProgressDrawable(this@SportActivity).apply {
-					strokeWidth = 5f
-					centerRadius = 30f
-					start()
-				}
+			circularProgressDrawable = CircularProgressDrawable(this@SportActivity).apply {
+				strokeWidth = 5f
+				centerRadius = 30f
+				start()
+			}
+			if (UserRepository.avatar.isNotEmpty()) Uri.parse(UserRepository.avatar)?.let { fileUri ->
 				Glide.with(this@SportActivity).load(fileUri).placeholder(circularProgressDrawable).apply(
 					RequestOptions.bitmapTransform(
 						RoundedCornersTransformation(
@@ -42,8 +43,22 @@ class SportActivity : AbstractActivity() {
 							border = 0
 						)
 					)
+				).fallback(R.drawable.vtr_logo).into(imgAvatar)
+			} else Glide.with(this@SportActivity).load(R.drawable.vtr_logo)
+				.placeholder(circularProgressDrawable)
+				.fallback(R.drawable.vtr_logo)
+				.apply(
+					RequestOptions.bitmapTransform(
+						RoundedCornersTransformation(
+							context = this@SportActivity,
+							radius = 250,
+							margin = 0,
+							color = "#00000000",
+							border = 0
+						)
+					)
 				).into(imgAvatar)
-			}
+
 			recyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
 			recyclerView.setHasFixedSize(true)
 			recyclerView.adapter = SportAdapter(

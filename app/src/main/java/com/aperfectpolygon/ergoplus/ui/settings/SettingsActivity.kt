@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.aperfectpolygon.ergoplus.R
 import com.aperfectpolygon.ergoplus.database.user.UserRepository
 import com.aperfectpolygon.ergoplus.databinding.ActivitySettingsBinding
 import com.aperfectpolygon.ergoplus.helper.ActivityHelper.moveTo
@@ -25,12 +26,12 @@ class SettingsActivity : AbstractActivity() {
 		super.onCreate(savedInstanceState)
 		binding = ActivitySettingsBinding.inflate(layoutInflater).apply {
 			setContentView(root)
-			Uri.parse(UserRepository.avatar)?.let { fileUri ->
-				circularProgressDrawable = CircularProgressDrawable(this@SettingsActivity).apply {
-					strokeWidth = 5f
-					centerRadius = 30f
-					start()
-				}
+			circularProgressDrawable = CircularProgressDrawable(this@SettingsActivity).apply {
+				strokeWidth = 5f
+				centerRadius = 30f
+				start()
+			}
+			if (UserRepository.avatar.isNotEmpty()) Uri.parse(UserRepository.avatar)?.let { fileUri ->
 				Glide.with(this@SettingsActivity).load(fileUri).placeholder(circularProgressDrawable)
 					.apply(
 						RequestOptions.bitmapTransform(
@@ -42,8 +43,22 @@ class SettingsActivity : AbstractActivity() {
 								border = 0
 							)
 						)
-					).into(imgAvatar)
-			}
+					).fallback(R.drawable.vtr_logo).into(imgAvatar)
+			} else Glide.with(this@SettingsActivity).load(R.drawable.vtr_logo)
+				.placeholder(circularProgressDrawable)
+				.fallback(R.drawable.vtr_logo)
+				.apply(
+					RequestOptions.bitmapTransform(
+						RoundedCornersTransformation(
+							context = this@SettingsActivity,
+							radius = 250,
+							margin = 0,
+							color = "#00000000",
+							border = 0
+						)
+					)
+				).into(imgAvatar)
+
 
 			switchBand.setOnCheckedChangeListener { buttonView, isChecked -> }
 			switchPhone.setOnCheckedChangeListener { buttonView, isChecked -> canVibrate = isChecked }

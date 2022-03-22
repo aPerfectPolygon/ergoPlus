@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.aperfectpolygon.ergoplus.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.model.GlideUrl
@@ -55,10 +56,12 @@ interface AbstractFrgInterface {
 	fun Fragment.getColor(i: Int): Int = ContextCompat.getColor(requireContext(), i)
 
 	fun AppCompatImageView.loadImageResourceWithGlide(resId: Int) =
-		Glide.with(this).load(resId).placeholder(circularProgressDrawable).into(this)
+		Glide.with(this).load(resId).placeholder(circularProgressDrawable)
+			.fallback(R.drawable.vtr_logo).into(this)
 
 	fun AppCompatImageView.loadImageResourceWithGlide(url: String) = try {
-		Glide.with(this).load(GlideUrl(url)).centerCrop().placeholder(circularProgressDrawable)
+		Glide.with(this).load(GlideUrl(url)).centerCrop()
+			.fallback(R.drawable.vtr_logo).placeholder(circularProgressDrawable)
 			.diskCacheStrategy(DiskCacheStrategy.ALL).into(this)
 	} catch (e: Exception) {
 		Logger.e(e, e.message ?: "")
