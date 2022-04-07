@@ -41,7 +41,7 @@ object ShpHelper {
 		)
 		set(value) = shp.edit().apply { putString("SHP_LOGS", value) }.apply()
 
-	val Context.getLogs: ArrayList<List<Long>>
+	val Context.getLogs: MutableList<List<Long>>
 		get() = GsonBuilder().apply {
 			serializeNulls()
 			setLenient()
@@ -52,14 +52,22 @@ object ShpHelper {
 				Double::class.java,
 				JsonSerializer<Double?> { src, _, _ -> JsonPrimitive(src.toBigDecimal()) }
 			)
-		}.create().fromJson(
+		}.create().fromJson<ArrayList<List<Long>>?>(
 			logs?.trim(),
 			object : TypeToken<ArrayList<List<Long>>>() {}.type
-		) ?: arrayListOf()
+		).sortedBy { it[0] }.toMutableList()
 
 	var Context.darkMode: Boolean
 		get() = shp.getBoolean(SHP_DARK_MOOD, false)
 		set(value) = shp.edit().apply { putBoolean(SHP_DARK_MOOD, value) }.apply()
+
+	var Context.firstGift: String?
+		get() = shp.getString("SHP_FIRST_GIFT", null)
+		set(value) = shp.edit().apply { putString("SHP_FIRST_GIFT", value) }.apply()
+
+	var Context.secondGift: String?
+		get() = shp.getString("SHP_SECOND_GIFT", null)
+		set(value) = shp.edit().apply { putString("SHP_SECOND_GIFT", value) }.apply()
 
 	var Context.canVibrate: Boolean
 		get() = shp.getBoolean("SHP_CAN_VIBRATE", false)

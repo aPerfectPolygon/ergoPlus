@@ -14,6 +14,7 @@ import com.aperfectpolygon.ergoplus.helper.abstracts.AbstractActivity
 import com.aperfectpolygon.ergoplus.helper.sharedPrefrences.ShpHelper.canVibrate
 import com.aperfectpolygon.ergoplus.ui.chart.ChartActivity
 import com.aperfectpolygon.ergoplus.ui.dashboard.DashboardActivity
+import com.aperfectpolygon.ergoplus.ui.gifts.GiftsActivity
 import com.aperfectpolygon.ergoplus.ui.sport.SportActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -63,7 +64,7 @@ class SettingsActivity : AbstractActivity() {
 			switchBand.setOnCheckedChangeListener { buttonView, isChecked -> }
 			switchPhone.setOnCheckedChangeListener { buttonView, isChecked -> canVibrate = isChecked }
 			imgChart.setOnClickListener { moveTo(this@SettingsActivity, ChartActivity()) }
-			imgGifts.setOnClickListener { /*moveTo(this@SettingsActivity, ChartActivity())*/ }
+			imgGifts.setOnClickListener { moveTo(this@SettingsActivity, GiftsActivity()) }
 			imgGym.setOnClickListener { moveTo(this@SettingsActivity, SportActivity()) }
 			imgVibrate.setOnClickListener { moveTo(this@SettingsActivity, SettingsActivity()) }
 			imgAvatar.setOnClickListener {

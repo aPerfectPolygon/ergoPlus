@@ -13,6 +13,7 @@ import com.aperfectpolygon.ergoplus.helper.BaseSocket.readAndFlush
 import com.aperfectpolygon.ergoplus.helper.RoundedCornersTransformation
 import com.aperfectpolygon.ergoplus.helper.abstracts.AbstractActivity
 import com.aperfectpolygon.ergoplus.ui.chart.ChartActivity
+import com.aperfectpolygon.ergoplus.ui.gifts.GiftsActivity
 import com.aperfectpolygon.ergoplus.ui.settings.SettingsActivity
 import com.aperfectpolygon.ergoplus.ui.sport.SportActivity
 import com.bumptech.glide.Glide
@@ -64,7 +65,7 @@ class DashboardActivity : AbstractActivity() {
 				readAndFlush
 				moveTo(this@DashboardActivity, ChartActivity())
 			}
-			imgGifts.setOnClickListener { /*moveTo(this@DashboardActivity, ChartActivity())*/ }
+			imgGifts.setOnClickListener { moveTo(this@DashboardActivity, GiftsActivity()) }
 			imgGym.setOnClickListener { moveTo(this@DashboardActivity, SportActivity()) }
 			imgVibrate.setOnClickListener { moveTo(this@DashboardActivity, SettingsActivity()) }
 		}

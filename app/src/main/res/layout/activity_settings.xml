@@ -30,37 +30,37 @@
 		android:layout_height="wrap_content"
 		android:layout_margin="@dimen/_24sdp"
 		android:gravity="center"
-		android:text="Wenn ich versuche, mein Bein auf das andere Bein zu setzen, warne mich:"
+		android:text="Wenn ich versuche mein Bein auf das andere Bein zu setzen, warne mich:"
 		android:textColor="#029991"
 		android:textSize="@dimen/_14sdp"
 		app:layout_constraintTop_toBottomOf="@id/txt_title" />
 
-	<com.google.android.material.switchmaterial.SwitchMaterial
+	<androidx.appcompat.widget.SwitchCompat
 		android:id="@+id/switch_phone"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="@dimen/_24sdp"
 		android:layoutDirection="rtl"
-		android:text="Vibration des Handy"
+		android:text="Handyvibration"
 		android:textColor="#029991"
+		android:thumb="@drawable/dr_thumb"
 		app:layout_constraintTop_toBottomOf="@id/txt_sub"
 		app:switchPadding="@dimen/_8sdp"
-		app:thumbTint="@color/white"
-		app:useMaterialThemeColors="true" />
+		app:track="@drawable/dr_track" />
 
-	<com.google.android.material.switchmaterial.SwitchMaterial
+	<androidx.appcompat.widget.SwitchCompat
 		android:id="@+id/switch_band"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="@dimen/_24sdp"
 		android:checked="true"
 		android:layoutDirection="rtl"
-		android:text="Vibration des Bands"
+		android:text="Bandvibration"
 		android:textColor="#029991"
+		android:thumb="@drawable/dr_thumb"
 		app:layout_constraintTop_toBottomOf="@id/switch_phone"
 		app:switchPadding="@dimen/_8sdp"
-		app:thumbTint="@color/white"
-		app:useMaterialThemeColors="true" />
+		app:track="@drawable/dr_track" />
 
 	<androidx.appcompat.widget.AppCompatImageView
 		android:id="@+id/img_gym"
@@ -80,7 +80,7 @@
 		android:layout_width="@dimen/_32sdp"
 		android:layout_height="@dimen/_32sdp"
 		android:layout_marginStart="@dimen/_8sdp"
-		android:layout_marginBottom="@dimen/_24sdp"
+		android:layout_marginBottom="@dimen/_12sdp"
 		android:elevation="@dimen/_24sdp"
 		android:src="@drawable/vtr_chart"
 		android:visibility="gone"
@@ -92,7 +92,7 @@
 		android:layout_width="@dimen/_32sdp"
 		android:layout_height="@dimen/_32sdp"
 		android:layout_marginEnd="@dimen/_8sdp"
-		android:layout_marginBottom="@dimen/_24sdp"
+		android:layout_marginBottom="@dimen/_12sdp"
 		android:elevation="@dimen/_24sdp"
 		android:src="@drawable/vtr_gift"
 		android:visibility="gone"
@@ -115,7 +115,7 @@
 		android:id="@+id/img_avatar"
 		android:layout_width="@dimen/_48sdp"
 		android:layout_height="@dimen/_48sdp"
-		android:layout_marginBottom="@dimen/_24sdp"
+		android:layout_marginBottom="@dimen/_12sdp"
 		android:elevation="@dimen/_24sdp"
 		android:src="@drawable/dr_btn"
 		app:layout_constraintBottom_toBottomOf="parent"

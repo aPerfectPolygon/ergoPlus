@@ -15,6 +15,7 @@ import com.aperfectpolygon.ergoplus.helper.RoundedCornersTransformation
 import com.aperfectpolygon.ergoplus.helper.abstracts.AbstractActivity
 import com.aperfectpolygon.ergoplus.helper.sharedPrefrences.ShpHelper.getLogs
 import com.aperfectpolygon.ergoplus.ui.dashboard.DashboardActivity
+import com.aperfectpolygon.ergoplus.ui.gifts.GiftsActivity
 import com.aperfectpolygon.ergoplus.ui.settings.SettingsActivity
 import com.aperfectpolygon.ergoplus.ui.sport.SportActivity
 import com.bumptech.glide.Glide
@@ -73,33 +74,30 @@ class ChartActivity : AbstractActivity() {
 						time = Date(it[0].times(1000))
 					}.let {
 						"${
-							it.getDisplayName(
-								Calendar.DAY_OF_WEEK,
-								Calendar.SHORT,
-								Locale.ENGLISH
-							)
-						}, ${
+							it.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.GERMANY)
+						} ${
 							it.get(Calendar.DAY_OF_MONTH)
 						}, ${
-							it.getDisplayName(
-								Calendar.MONTH,
-								Calendar.SHORT,
-								Locale.ENGLISH
-							)
+							it.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.GERMANY)
 						}"
 					}
 				}.also { map ->
 					Logger.i("map: $map")
 					AAChartModel().apply {
-						chartType(AAChartType.Line)
-						title("title")
-						subtitle("subtitle")
+						chartType(AAChartType.Areaspline)
+						colorsTheme(arrayOf("#F48D79", "#00000000"))
+						gradientColorEnable = true
+						title("")
+						subtitle("")
+						yAxisTitle = "Durchschnittswert: Versuche pro Stunde"
 						backgroundColor(getColor(R.color.transparent))
+						legendEnabled = false
 						dataLabelsEnabled(true)
 						Logger.i("keys : ${map.keys}")
 						series = arrayOf(
 							AASeriesElement().apply {
 								name("")
+								color("#F48D79")
 								categories = map.keys.toTypedArray()
 								mutableListOf<Int>().also { data ->
 									map.keys.onEach { key ->
@@ -116,7 +114,7 @@ class ChartActivity : AbstractActivity() {
 			Logger.i("logs: $getLogs")
 
 			imgChart.setOnClickListener { moveTo(this@ChartActivity, ChartActivity()) }
-			imgGifts.setOnClickListener { /*moveTo(this@ChartActivity, ChartActivity())*/ }
+			imgGifts.setOnClickListener { moveTo(this@ChartActivity, GiftsActivity()) }
 			imgGym.setOnClickListener { moveTo(this@ChartActivity, SportActivity()) }
 			imgVibrate.setOnClickListener { moveTo(this@ChartActivity, SettingsActivity()) }
 			imgAvatar.setOnClickListener {

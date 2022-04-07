@@ -102,3 +102,17 @@
 -keep class com.airbnb.lottie.** { *; }
 
 -keep class com.github.aachartmodel.aainfographics.** { *; }
+
+-keep enum com.aperfectpolygon.ergoplus.** { *; }
+-keep enum com.aperfectpolygon.ergoplus.**
+-keep class com.aperfectpolygon.ergoplus.** { *; }
+-keep class com.aperfectpolygon.ergoplus.**
+-keep interface com.aperfectpolygon.ergoplus.**
+-keep interface com.aperfectpolygon.ergoplus.** { *; }
+
+-keepclasseswithmembernames enum com.aperfectpolygon.ergoplus.** { *; }
+-keepclasseswithmembernames enum com.aperfectpolygon.ergoplus.**
+-keepclasseswithmembernames class com.aperfectpolygon.ergoplus.** { *; }
+-keepclasseswithmembernames class com.aperfectpolygon.ergoplus.**
+-keepclasseswithmembernames interface com.aperfectpolygon.ergoplus.**
+-keepclasseswithmembernames interface com.aperfectpolygon.ergoplus.** { *; }

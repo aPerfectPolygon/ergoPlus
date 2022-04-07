@@ -1,9 +1,6 @@
 package com.aperfectpolygon.ergoplus.ui.auth
 
 import android.app.Activity
-import android.app.DatePickerDialog
-import android.icu.util.Calendar
-import android.icu.util.Calendar.*
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -27,8 +24,9 @@ import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.ImagePicker.Companion.RESULT_ERROR
 import com.github.dhaval2404.imagepicker.ImagePicker.Companion.getError
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.orhanobut.logger.Logger
-import java.io.File
+import java.util.*
 
 
 class AuthenticatorActivity : AbstractActivity() {
@@ -41,19 +39,24 @@ class AuthenticatorActivity : AbstractActivity() {
 			edtBirthDate
 			hideKeyboard
 			vBirthDate.setOnClickListener {
-				Calendar.getInstance().apply {
-					get(YEAR).also { year ->
-						get(MONTH).also { month ->
-							get(DAY_OF_MONTH).also { day ->
-								DatePickerDialog(
-									this@AuthenticatorActivity, { _, y, moy, dom ->
-										"$dom, $moy, $y".also { edtBirthDate.setText(it) }
-									}, year, month, day
-								).show()
+				MaterialDatePicker.Builder.datePicker()
+					.setTitleText("Select Date")
+					.setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+					.setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
+					.build().apply {
+						show(supportFragmentManager, tag)
+						addOnPositiveButtonClickListener {
+							Calendar.getInstance().apply { time = Date(it) }.let {
+								"${
+									it.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.GERMANY)
+								} ${
+									it.get(Calendar.DAY_OF_MONTH)
+								}, ${
+									it.get(Calendar.YEAR)
+								}".also { edtBirthDate.setText(it) }
 							}
 						}
 					}
-				}
 			}
 			imgAvatar.setOnClickListener {
 				try {
@@ -78,7 +81,7 @@ class AuthenticatorActivity : AbstractActivity() {
 					return@setOnClickListener
 				}
 				if (!checkbox.isChecked) {
-					snackBar(root, "You have not accepted the term's of using (this App)")
+					snackBar(root, "You have not accepted the term's of using Ergo +")
 					return@setOnClickListener
 				}
 				user = user.apply {
@@ -95,13 +98,10 @@ class AuthenticatorActivity : AbstractActivity() {
 						this@AuthenticatorActivity,
 						DashboardActivity()
 					)
-				}, 1000)
+				}, 3000)
 			}
 		}
 	}
-
-	private var file: File? = null
-	private var filePath: String? = null
 
 	private val startForProfileImageResult =
 		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -114,8 +114,6 @@ class AuthenticatorActivity : AbstractActivity() {
 					val fileUri = data?.data
 					Logger.w("fileUri --> $fileUri")
 					if (fileUri == null) {
-						file = null
-						filePath = null
 						return@registerForActivityResult
 					}
 					circularProgressDrawable = CircularProgressDrawable(this).apply {

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/windowBackground"
+	tools:context=".ui.gifts.GiftsActivity">
+
+	<View
+		android:id="@+id/v_header"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/_48sdp"
+		android:background="@drawable/dr_header"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<com.google.android.material.textview.MaterialTextView
+		android:id="@+id/txt_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/_24sdp"
+		android:text="Geschenke"
+		android:textColor="#029991"
+		android:textSize="@dimen/_18sdp"
+		app:layout_constraintTop_toBottomOf="@id/v_header" />
+
+	<androidx.core.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_marginHorizontal="@dimen/_24sdp"
+		android:layout_marginTop="@dimen/_24sdp"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintTop_toBottomOf="@id/txt_title">
+
+		<androidx.appcompat.widget.LinearLayoutCompat
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<com.google.android.material.textview.MaterialTextView
+				android:id="@+id/txt_desc"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:justificationMode="inter_word"
+				android:text="@string/hier_kannst_du_2_belohnungen_f_r_dich_ausw_hlen_innerhalb_der_ersten_10_stunden_die_du_dein_ergo_nutzt_beobachtet_die_app_wie_deine_gewohnheit_ist_nachdem_du_im_vergleich_zu_deinen_ersten_10_stunden_50_prozent_verbesserung_erzielst_informiert_dich_dein_ergo_dar_ber_dass_du_ein_geschenk_f_r_dich_selbst_vorbereiten_sollst_das_zweite_geschenk_darfst_du_dir_besorgen_wenn_du_nur_noch_0_bis_3_mal_versuchst_dein_bein_auf_das_andere_zu_legen_du_wei_t_am_besten_was_dich_motiviert_es_ist_aber_sehr_wichtig_dass_wenn_du_deine_ziele_erreichst_so_schnell_wie_m_glich_dein_geschenk_besorgst_dieses_geschenk_kann_alles_sein_ein_kinobesuch_oder_eie_st_ck_deiner_lieblingstorte_hauptsache_du_hast_freude_daran"
+				android:textColor="#029991"
+				android:textSize="@dimen/_12sdp"
+				app:layout_constraintTop_toBottomOf="@id/txt_title" />
+
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/til_first_gift"
+				style="@style/OutlinedBox"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginVertical="@dimen/_4sdp"
+				android:elevation="@dimen/_24sdp"
+				app:boxBackgroundColor="#C5F1F1"
+				app:boxBackgroundMode="outline"
+				app:boxCornerRadiusBottomEnd="@dimen/_24sdp"
+				app:boxCornerRadiusBottomStart="@dimen/_24sdp"
+				app:boxCornerRadiusTopEnd="@dimen/_24sdp"
+				app:boxCornerRadiusTopStart="@dimen/_24sdp"
+				app:boxStrokeColor="#84C5BF"
+				app:layout_constraintTop_toBottomOf="@id/img_avatar">
+
+				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/edt_first_gift"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:fontFamily="@font/comfortaa_bold"
+					android:gravity="center_vertical"
+					android:hint="Erster Preis"
+					android:inputType="textEmailAddress"
+					android:lines="1"
+					android:padding="@dimen/_8sdp"
+					android:selectAllOnFocus="true"
+					android:singleLine="true"
+					android:textColor="#003835"
+					android:textColorHint="#003835"
+					android:textSize="@dimen/_12sdp" />
+			</com.google.android.material.textfield.TextInputLayout>
+
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/til_second_gift"
+				style="@style/OutlinedBox"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginVertical="@dimen/_4sdp"
+				android:elevation="@dimen/_24sdp"
+				app:boxBackgroundColor="#C5F1F1"
+				app:boxBackgroundMode="outline"
+				app:boxCornerRadiusBottomEnd="@dimen/_24sdp"
+				app:boxCornerRadiusBottomStart="@dimen/_24sdp"
+				app:boxCornerRadiusTopEnd="@dimen/_24sdp"
+				app:boxCornerRadiusTopStart="@dimen/_24sdp"
+				app:boxStrokeColor="#84C5BF"
+				app:layout_constraintTop_toBottomOf="@id/img_avatar">
+
+				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/edt_second_gift"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:fontFamily="@font/comfortaa_bold"
+					android:gravity="center_vertical"
+					android:hint="Zweiter Preis"
+					android:inputType="textEmailAddress"
+					android:lines="1"
+					android:padding="@dimen/_8sdp"
+					android:selectAllOnFocus="true"
+					android:singleLine="true"
+					android:textColor="#003835"
+					android:textColorHint="#003835"
+					android:textSize="@dimen/_12sdp" />
+			</com.google.android.material.textfield.TextInputLayout>
+
+			<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/btn_submit"
+				style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="bottom"
+				android:layout_marginHorizontal="@dimen/_24sdp"
+				android:background="@drawable/dr_btn"
+				android:elevation="@dimen/_8sdp"
+				android:fontFamily="@font/comfortaa_bold"
+				android:foreground="?selectableItemBackgroundBorderless"
+				android:gravity="center"
+				android:padding="@dimen/_8sdp"
+				android:text="SPEICHERN"
+				android:textColor="@color/white"
+				android:textSize="@dimen/_14sdp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/checkbox" />
+
+		</androidx.appcompat.widget.LinearLayoutCompat>
+
+	</androidx.core.widget.NestedScrollView>
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_gym"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_margin="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:rotation="-45"
+		android:src="@drawable/vtr_gym"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintEnd_toStartOf="@id/img_avatar"
+		app:layout_constraintTop_toTopOf="@id/img_avatar" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_chart"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_marginStart="@dimen/_8sdp"
+		android:layout_marginBottom="@dimen/_12sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/vtr_chart"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintStart_toEndOf="@id/img_gym" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_gifts"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_marginEnd="@dimen/_8sdp"
+		android:layout_marginBottom="@dimen/_12sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/vtr_gift"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintEnd_toStartOf="@id/img_vibrate" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_vibrate"
+		android:layout_width="@dimen/_32sdp"
+		android:layout_height="@dimen/_32sdp"
+		android:layout_margin="@dimen/_24sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/vtr_vibrate"
+		android:visibility="gone"
+		app:layout_constraintBottom_toTopOf="@id/img_avatar"
+		app:layout_constraintStart_toEndOf="@id/img_avatar"
+		app:layout_constraintTop_toTopOf="@id/img_avatar" />
+
+	<androidx.appcompat.widget.AppCompatImageView
+		android:id="@+id/img_avatar"
+		android:layout_width="@dimen/_48sdp"
+		android:layout_height="@dimen/_48sdp"
+		android:layout_marginBottom="@dimen/_12sdp"
+		android:elevation="@dimen/_24sdp"
+		android:src="@drawable/dr_btn"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

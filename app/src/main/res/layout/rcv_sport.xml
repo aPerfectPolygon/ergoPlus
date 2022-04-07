@@ -16,7 +16,7 @@
 		app:cardUseCompatPadding="true">
 
 		<com.google.android.material.imageview.ShapeableImageView
-			android:id="@+id/image"
+			android:id="@+id/img_thumbnail"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent" />
 

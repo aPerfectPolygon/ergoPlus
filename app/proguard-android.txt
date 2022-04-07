@@ -23,21 +23,20 @@
    <init>();
    <methods>;
 }
+-keep enum com.aperfectpolygon.ergoplus.** { *; }
+-keep enum com.aperfectpolygon.ergoplus.**
 -keep class com.aperfectpolygon.ergoplus.** { *; }
+-keep class com.aperfectpolygon.ergoplus.**
 -keep interface com.aperfectpolygon.ergoplus.**
--keep class com.aperfectpolygon.ergoplus.data.** { *; }
--keepclassmembers class com.aperfectpolygon.ergoplus.model.** { *; }
--keep class com.aperfectpolygon.ergoplus.database.** { *; }
--keep interface com.aperfectpolygon.ergoplus.interfaces.** { *; }
--keep class com.aperfectpolygon.ergoplus.services.** { *; }
-# -keep class com.aperfectpolygon.ergoplus.sockets.** { *; }
-# -keep class com.aperfectpolygon.ergoplus.ui.** { *; }
--keep class com.aperfectpolygon.ergoplus.ui.container.** { *; }
--keep class com.aperfectpolygon.ergoplus.ui.main.** { *; }
--keep class com.aperfectpolygon.ergoplus.ui.candleyaar.** { *; }
--keep class com.aperfectpolygon.ergoplus.utils.** { *; }
--keep class com.candlebourse.candleapp.ui.menu.settings.notification_settings.NotificationSettingsFrg.** { *; }
--keep class com.android.vending.billing.**
+-keep interface com.aperfectpolygon.ergoplus.** { *; }
+
+-keepclasseswithmembernames enum com.aperfectpolygon.ergoplus.** { *; }
+-keepclasseswithmembernames enum com.aperfectpolygon.ergoplus.**
+-keepclasseswithmembernames class com.aperfectpolygon.ergoplus.** { *; }
+-keepclasseswithmembernames class com.aperfectpolygon.ergoplus.**
+-keepclasseswithmembernames interface com.aperfectpolygon.ergoplus.**
+-keepclasseswithmembernames interface com.aperfectpolygon.ergoplus.** { *; }
+
 # Parcelable
 -keepclassmembers class * implements android.os.Parcelable {
   public static final android.os.Parcelable$Creator CREATOR;
